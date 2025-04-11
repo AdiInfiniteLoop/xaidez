@@ -73,7 +73,7 @@ const Navbar = () => {
               <ul className="flex items-center space-x-1">
                 <li className="relative group">
                   <button
-                    className="group flex items-center space-x-2 py-2 px-4 bg-black bg-opacity-20 hover:bg-opacity-30 text-white rounded-md transition-all"
+                    className="group flex items-center space-x-2 py-2 px-4 bg-xaidez-accent/90  text-white rounded-md transition-all"
                   >
                     <Menu
                       size={18}
@@ -139,7 +139,7 @@ const Navbar = () => {
               <input
                 type="text"
                 placeholder="Search products..."
-                className="w-full py-2 px-4 pl-10 rounded-full border-0 bg-black bg-opacity-20 text-white placeholder-gray-400 focus:bg-black focus:bg-opacity-30 focus:ring-2 focus:ring-pink-500 focus:outline-none transition-all"
+                className="w-full py-2 px-4 pl-10 rounded-full border-0 bg-black bg-opacity-20 text-white placeholder-gray-400 focus:bg-black focus:bg-opacity-30 focus:ring-2 focus:ring-xaidez-accent focus:outline-none transition-all"
               />
               <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             </div>
@@ -174,7 +174,7 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Search products..."
-              className="w-full py-2 px-4 pl-10 rounded-full border-0 bg-black bg-opacity-20 text-white placeholder-gray-400 focus:bg-black focus:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-pink-500 transition-all"
+              className="w-full py-2 px-4 pl-10 rounded-full border-0 bg-black bg-opacity-20 text-white placeholder-gray-400 focus:bg-black focus:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-xaidez-accent transition-all"
             />
             <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
           </div>
@@ -234,7 +234,7 @@ const Navbar = () => {
                         onClick={toggleMobileMenu}
                       >
                         <span>{category.name}</span>
-                        <span className="text-sm text-pink-400 font-medium">{category.itemCount}</span>
+                        <span className="text-sm text-xaidez-accent font-medium">{category.itemCount}</span>
                       </Link>
                     </li>
                   ))}
@@ -288,7 +288,7 @@ const Navbar = () => {
                 className="flex items-center px-3 py-3 text-gray-300 hover:bg-black hover:bg-opacity-20 hover:text-white rounded-md transition-colors"
                 onClick={toggleMobileMenu}
               >
-                <User size={18} className="mr-2 text-pink-400" />
+                <User size={18} className="mr-2 text-xaidez-accent" />
                 My Account
               </Link>
             </li>
@@ -299,7 +299,7 @@ const Navbar = () => {
                 className="flex items-center px-3 py-3 text-gray-300 hover:bg-black hover:bg-opacity-20 hover:text-white rounded-md transition-colors"
                 onClick={toggleMobileMenu}
               >
-                <Heart size={18} className="mr-2 text-pink-400" />
+                <Heart size={18} className="mr-2 text-xaidez-accent" />
                 Wishlist
               </Link>
             </li>
@@ -310,7 +310,7 @@ const Navbar = () => {
                 className="flex items-center px-3 py-3 text-gray-300 hover:bg-black hover:bg-opacity-20 hover:text-white rounded-md transition-colors"
                 onClick={toggleMobileMenu}
               >
-                <ShoppingCart size={18} className="mr-2 text-pink-400" />
+                <ShoppingCart size={18} className="mr-2 text-xaidez-accent" />
                 Shopping Cart
               </Link>
             </li>
