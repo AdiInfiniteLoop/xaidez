@@ -34,11 +34,13 @@ const Navbar = () => {
   }, []);
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-    if (isMobileMenuOpen) {
-      setIsCategoryMenuOpen(false);
-    }
+    setIsMobileMenuOpen((prev) => {
+      const newState = !prev;
+      if (!newState) setIsCategoryMenuOpen(false);
+      return newState;
+    });
   };
+  
 
   const toggleCategoryMenu = () => {
     setIsCategoryMenuOpen(!isCategoryMenuOpen);
@@ -145,10 +147,6 @@ const Navbar = () => {
 
           {/* Right - User actions */}
           <div className="flex items-center space-x-5">
-            {/* Mobile search button */}
-            <button className="md:hidden text-white hover:text-pink-300 transition-colors">
-              <Search size={22} />
-            </button>
             
             {/* Wishlist */}
             <Link href="/wishlist" className="text-white hover:text-pink-300 transition-colors hidden sm:block">
