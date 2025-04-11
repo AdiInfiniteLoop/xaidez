@@ -33,7 +33,6 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Toggle mobile menu
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
     if (isMobileMenuOpen) {
@@ -41,7 +40,6 @@ const Navbar = () => {
     }
   };
 
-  // Toggle category menu (for mobile only)
   const toggleCategoryMenu = () => {
     setIsCategoryMenuOpen(!isCategoryMenuOpen);
   };
@@ -54,7 +52,7 @@ const Navbar = () => {
           <div className="flex items-center">
             {/* Mobile menu button */}
             <button 
-              className="lg:hidden text-white mr-3 hover:text-purple-200 transition-colors"
+              className="lg:hidden text-white mr-3 lg:hover:text-purple-200 transition-colors"
               onClick={toggleMobileMenu}
               aria-label="Toggle menu"
             >
@@ -64,7 +62,7 @@ const Navbar = () => {
             {/* Logo */}
             <Link href="/" className="flex items-center">
               <span className="text-xl font-bold text-white">
-                <span className="bg-gradient-to-r from-amber-500 to-pink-500 px-3 py-1 rounded-md">Xaidez</span>
+                <span className="px-3 py-1 rounded-md">Xaidez</span>
               </span>
             </Link>
 
@@ -199,7 +197,7 @@ const Navbar = () => {
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center">
               <span className="text-xl font-bold">
-                <span className="bg-gradient-to-r from-amber-500 to-pink-500 px-2 py-1 rounded-md text-white">Xaidez</span>
+                <span className=" px-2 py-1 rounded-md text-white">Xaidez</span>
               </span>
             </Link>
             <button onClick={toggleMobileMenu} className="text-gray-400 hover:text-white">
