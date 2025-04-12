@@ -10,3 +10,7 @@
       transform: translateX(calc(-100% / 3));
     }
   }
+
+  .overflow-x-auto::-webkit-scrollbar {
+    display: none;
+  }

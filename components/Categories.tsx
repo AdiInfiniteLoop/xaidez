@@ -22,9 +22,8 @@ const CategoriesSection: React.FC<Props> = ({ items }) => {
         {items.map((item) => (
           <div
             key={item.id}
-            className="m-4 w-52 h-[17rem] flex-shrink-0 rounded-2xl bg-white shadow-lg p-4 hover:shadow-xl transition-all duration-300 flex flex-col items-center"
+            className="m-4 w-52 h-[17rem] flex-shrink-0 rounded-2xl bg-xaidez-light shadow-lg p-4 hover:shadow-xl transition-all duration-300 flex flex-col items-center"
           >
-            {/* Image: 1:1 ratio in a square container */}
             <div className="relative w-32 h-32 rounded-lg overflow-hidden">
               <Image
                 src={item.imageUrl}
@@ -35,13 +34,12 @@ const CategoriesSection: React.FC<Props> = ({ items }) => {
               />
             </div>
 
-            {/* Info: fixed spacing so all cards align */}
             <div className="mt-4 flex flex-col items-center text-center space-y-1">
-              <p className="text-base font-semibold text-gray-800 leading-tight">
+              <p className="text-base font-semibold text-xaidez-secondary leading-tight">
                 {item.name}
               </p>
               <p className="text-sm text-gray-500">{item.categoryName}</p>
-              <p className="text-base text-orange-600 font-bold">
+              <p className="text-base text-xaidez-accent font-bold">
                 ${item.price.toFixed(2)}
               </p>
             </div>
