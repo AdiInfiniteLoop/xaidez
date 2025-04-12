@@ -81,7 +81,7 @@ export default function HeroSection() {
   }, [isDragging, isAnimating, activeHeroIndex, nextHeroSlide])
 
   return (
-    <div className="p-5 w-[10/11]">
+    <div className="p-5 w-[10/11] mx-auto">
       {/* Hero Slider */}
       <div
         ref={heroSliderRef}
@@ -94,7 +94,7 @@ export default function HeroSection() {
         onTouchMove={handleHeroDragMove}
         onTouchEnd={handleDragEnd}
       >
-        <div className="relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+        <div className="relative h-[400px] md:h-[500px] lg:h-[600px]">
           {heroSlides.map((slide, index) => (
             <div
               key={slide.id}
