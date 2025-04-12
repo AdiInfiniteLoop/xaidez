@@ -13,7 +13,7 @@ const NavItem = ({ href, label }: NavItemProps) => (
     >
       <span className="absolute left-0 bottom-0 h-[2px] w-0 bg-xaidez-accent/90 transition-all duration-500 ease-in-out group-hover:w-full" />
       <span className="absolute left-0 bottom-0 h-0 w-full bg-xaidez-accent/90 transition-all duration-400 ease-in-out -z-10 group-hover:h-full group-hover:transition-delay-400" />
-      <span className="relative z-10 group-hover:text-[#1e1e2b] transition-all delay-50">{label}</span>
+      <span className="relative z-10 transition-all delay-50">{label}</span>
     </Link>
   </li>
 );
