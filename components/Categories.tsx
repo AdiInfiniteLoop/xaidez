@@ -18,6 +18,10 @@ interface Props {
 const CategoriesSection: React.FC<Props> = ({ items }) => {
   return (
     <div className="py-10 max-w-7xl mx-auto">
+        <h2 className="text-2xl font-bold text-gray-800 relative pb-2">
+          Categories
+          <span className="absolute bottom-0 left-0 w-24 h-1 bg-xaidez-accent"></span>
+        </h2>
       <Marquee pauseOnHover={true} speed={50} gradient={false}>
         {items.map((item) => (
           <div
