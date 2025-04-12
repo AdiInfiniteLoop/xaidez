@@ -1,13 +1,12 @@
 'use client'
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ShoppingCart, User, Heart, Search, Menu, X } from 'lucide-react';
+import { Search, Menu, X } from 'lucide-react';
 import NavItem from './navbutton';
 import CategoryDropdownButton from './navbar/CategoryDropdownButton';
 import MoreDropdownButton from './navbar/MoreDropdownButton';
 import MobileMenuItem from './navbar/MobileMenuItem';
 import CategoryMobileDropdown from './navbar/CategoryMobileDropdown';
-import UserActionIcon from './navbar/UserActionIcon';
 
 export type Category = {
   id: number;
