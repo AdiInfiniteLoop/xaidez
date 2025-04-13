@@ -8,11 +8,9 @@ export default async function Homepage() {
   let sliders = [];
   let categories = [];
   let products = [];
-
+  console.log(process.env.NEXT_PUBLIC_BACKEND_URL)
   try {
-    const res = await fetch("http://api.snowbankkashmir.com/api/v1/home", {
-      cache: "no-store",
-    });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/home`);
 
     if (!res.ok) throw new Error("Failed to fetch");
 
@@ -27,7 +25,7 @@ export default async function Homepage() {
   return (
     <div>
       <HeroSection slides={sliders} />
-      {/* <CategoriesSection items={categories} />
+      <CategoriesSection items={categories} />
       <div className="hidden md:block">
         <WhyChooseUsSection />
         <FeaturedProducts products={products} />
@@ -36,7 +34,8 @@ export default async function Homepage() {
         <FeaturedProducts products={products} />
         <WhyChooseUsSection />
       </div>
-      <MetricsSection /> */}
+      
+      <MetricsSection />
     </div>
   );
 }
