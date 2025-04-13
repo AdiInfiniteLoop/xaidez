@@ -3,29 +3,10 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Search, Menu, X } from 'lucide-react';
 import NavItem from './navbutton';
-import CategoryDropdownButton from './navbar/CategoryDropdownButton';
-import MoreDropdownButton from './navbar/MoreDropdownButton';
 import MobileMenuItem from './navbar/MobileMenuItem';
-import CategoryMobileDropdown from './navbar/CategoryMobileDropdown';
-
-export type Category = {
-  id: number;
-  name: string;
-  itemCount: number;
-  path: string;
-};
-
-const categories: Category[] = [
-  { id: 1, name: 'Dry Fruits', itemCount: 12, path: '/category/dry-fruits' },
-  { id: 2, name: 'Saffron', itemCount: 5, path: '/category/saffron' },
-  { id: 3, name: 'Spices', itemCount: 8, path: '/category/spices' },
-  { id: 4, name: 'SkinCare', itemCount: 6, path: '/category/skin-care' },
-  { id: 5, name: 'Shop All', itemCount: 31, path: '/shop-all' },
-];
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isCategoryMenuOpen, setIsCategoryMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -38,16 +19,7 @@ const Navbar = () => {
   }, []);
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen((prev) => {
-      const newState = !prev;
-      if (!newState) setIsCategoryMenuOpen(false);
-      return newState;
-    });
-  };
-  
-
-  const toggleCategoryMenu = () => {
-    setIsCategoryMenuOpen(!isCategoryMenuOpen);
+    setIsMobileMenuOpen((prev) => !prev);
   };
 
   return (
@@ -75,13 +47,9 @@ const Navbar = () => {
             {/* Desktop navigation items */}
             <nav className="hidden lg:flex ml-8">
               <ul className="flex items-center space-x-1">
-              <CategoryDropdownButton categories={categories} />                  
                 <NavItem href='/about' label='About'/>
                 <NavItem href='/specials' label='Specials'/>
                 <NavItem href='/contact' label='Contact'/>
-
-                <MoreDropdownButton />
-
               </ul>
             </nav>
           </div>
@@ -97,8 +65,6 @@ const Navbar = () => {
               <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             </div>
           </div>
-
-
         </div>
 
         <div className="md:hidden py-3">
@@ -138,19 +104,10 @@ const Navbar = () => {
         
         <nav className="p-4">
           <ul className="space-y-1">
-            
-            <CategoryMobileDropdown
-            categories={categories}
-            isOpen={isCategoryMenuOpen}
-            onToggle={toggleCategoryMenu}
-            onItemClick={toggleMobileMenu}
-          />
             <MobileMenuItem href="/specials" label="Specials" onClick={toggleMobileMenu} />
             <MobileMenuItem href="/about" label="About" onClick={toggleMobileMenu} />
             <MobileMenuItem href="/contact" label="Contact" onClick={toggleMobileMenu} />
             <MobileMenuItem href="/affiliate" label="Affiliate" onClick={toggleMobileMenu} />
-
-
           </ul>
         </nav>
       </div>
