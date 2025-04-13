@@ -26,10 +26,8 @@ const Navbar = () => {
   return (
     <header className={`sticky top-0 z-50 w-full bg-gray-900 transition-all duration-300 ${isScrolled ? 'shadow-lg shadow-black/30' : ''}`}>
       <div className="container mx-auto px-4 flex flex-col">
-        {/* Main navbar content */}
         <div className="flex items-center justify-between py-4">
           <div className="flex items-center">
-            {/* Mobile menu button */}
             <button 
               className="xl:hidden text-white mr-3 xl:hover:text-purple-200 transition-colors"
               onClick={toggleMobileMenu}
@@ -66,17 +64,16 @@ const Navbar = () => {
               <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             </div>
           </div>
-
-          {/* Contact button - Desktop */}
           <div className="hidden md:flex items-center">
-            <Link 
-              href="/contact" 
-              className="flex items-center px-4 py-2 rounded-full bg-black bg-opacity-20 hover:bg-xaidez-hoveraccent text-white hover:bg-opacity-30 transition-all"
-            >
-              <Mail size={18} className="mr-2" />
-              <span>Contact Us</span>
-            </Link>
-          </div>
+          <Link 
+            href="/contact" 
+            className="flex items-center px-4 py-2 rounded-full bg-xaidez-dark bg-opacity-20 hover:bg-xaidez-hoveraccent text-white hover:bg-opacity-30 transition-all border border-white/40"
+          >
+            <Mail size={18} className="mr-2" />
+            <span>Contact Us</span>
+          </Link>
+        </div>
+
         </div>
 
         {/* Mobile search and contact */}

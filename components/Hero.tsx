@@ -99,7 +99,7 @@ export default function HeroSection({ slides }: HeroSectionProps) {
             >
               <div className="absolute inset-0 w-full h-full">
                 <Image
-                  src={slide.image || "/placeholder.svg"}
+                  src={slide.image || "/pomogrenate.webp"}
                   alt={slide.title}
                   fill
                   className={`object-cover transition-transform duration-10000 ease-out ${
