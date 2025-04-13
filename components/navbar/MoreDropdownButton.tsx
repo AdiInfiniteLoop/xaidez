@@ -1,12 +1,13 @@
 'use client'
-import Link from 'next/link';
+import Link from 'next/link'
 
 const MoreDropdownButton = () => (
   <li className="relative group">
-    <button className="flex items-center py-2 px-4 text-white hover:bg-black hover:bg-opacity-20 rounded-md transition-colors">
+    {/* Trigger Button */}
+    <button className="flex items-center gap-1 px-4 py-2 text-white font-medium uppercase tracking-wide transition duration-300 hover:text-xaidez-accent">
       More
       <svg
-        className="w-4 h-4 ml-1 transition-transform group-hover:rotate-180"
+        className="w-4 h-4 transform transition-transform duration-300 group-hover:rotate-180"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -16,8 +17,9 @@ const MoreDropdownButton = () => (
       </svg>
     </button>
 
-    <div className="absolute top-full right-0 w-48 bg-white shadow-xl rounded-md overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-      <ul>
+    {/* Dropdown Menu */}
+    <div className="absolute top-full right-0 mt-2 w-52 bg-white/90 backdrop-blur-md border border-gray-200 shadow-2xl rounded-xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 group-hover:visible invisible transform transition-all duration-300 origin-top-right z-50">
+      <ul className="py-2">
         {[
           { label: 'Our Blog', href: '/blog' },
           { label: 'Recipes', href: '/recipes' },
@@ -26,7 +28,7 @@ const MoreDropdownButton = () => (
           <li key={item.href}>
             <Link
               href={item.href}
-              className="block px-4 py-2 hover:bg-indigo-50 transition-colors text-gray-700"
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-xaidez-accent/10 hover:text-xaidez-accent transition-colors duration-200"
             >
               {item.label}
             </Link>
@@ -35,6 +37,6 @@ const MoreDropdownButton = () => (
       </ul>
     </div>
   </li>
-);
+)
 
-export default MoreDropdownButton;
+export default MoreDropdownButton

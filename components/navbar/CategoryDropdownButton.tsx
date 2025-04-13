@@ -1,38 +1,42 @@
 'use client'
-import Link from 'next/link';
-import { Menu } from 'lucide-react';
-import { Category } from '../Navbar';
+import Link from 'next/link'
+import { Menu } from 'lucide-react'
+import { Category } from '../Navbar'
 
 type Props = {
-  categories: Category[];
-};
+  categories: Category[]
+}
 
 const CategoryDropdownButton = ({ categories }: Props) => (
-  <li className="relative group">
-    <button className="group flex items-center space-x-2 py-2 px-4 bg-xaidez-accent/90 text-white rounded-md transition-all">
+  <li className="relative group z-50">
+    {/* Trigger */}
+    <button className="flex items-center gap-2 px-4 py-2 text-white font-semibold uppercase tracking-wide bg-xaidez-accent  rounded-lg shadow-md transition-all hover:brightness-110">
       <Menu
         size={18}
         className="transform transition-transform duration-300 group-hover:rotate-180"
       />
-      <span className="font-medium">CATEGORIES</span>
+      <span>Categories</span>
     </button>
 
-    <div className="absolute top-full left-0 w-64 bg-white shadow-xl rounded-md overflow-hidden transition-all duration-300 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform group-hover:translate-y-0 -translate-y-2">
-      <ul>
+    {/* Dropdown */}
+    <div className="absolute top-full left-0 mt-2 w-72 bg-white/90 backdrop-blur-md border border-gray-200 rounded-xl shadow-2xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 group-hover:visible invisible transition-all duration-300 origin-top-left">
+      <ul className="divide-y divide-gray-100">
         {categories.map((category) => (
           <li key={category.id}>
             <Link
               href={category.path}
-              className="flex items-center justify-between px-4 py-3 hover:bg-indigo-50 transition-colors text-gray-700"
+              className="flex justify-between items-center px-5 py-3 text-sm text-gray-800 hover:bg-xaidez-accent/10 hover:text-xaidez-accent transition-colors"
             >
-              <span>{category.name}</span>
-              <span className="text-sm text-indigo-500 font-medium">{category.itemCount}</span>
+              <span className="font-medium">{category.name}</span>
+              <span className="text-xs font-semibold bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full">
+                {category.itemCount}
+              </span>
             </Link>
           </li>
         ))}
       </ul>
     </div>
   </li>
-);
+)
 
-export default CategoryDropdownButton;
+export default CategoryDropdownButton

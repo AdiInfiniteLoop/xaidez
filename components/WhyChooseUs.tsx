@@ -1,5 +1,7 @@
+import Link from 'next/link';
+import React from 'react';
 
-export function WhyChooseUsSection() {
+const WhyChooseUs = () => {
   const reasons = [
     {
       icon: (
@@ -42,31 +44,78 @@ export function WhyChooseUsSection() {
   ];
 
   return (
-    <section className="w-full max-w-7xl mx-auto px-3 py-12 bg-white">
-      <div className="text-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 relative inline-block pb-2 mb-2">
-          Why Choose Us
-          <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-xaidez-accent"></span>
-        </h2>
-        <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto">
-          We take pride in offering the best shopping experience with quality products and exceptional service
-        </p>
-      </div>
+    <section className="w-full bg-amber-50 py-12 lg:py-20">
+      <div className="max-w-7xl mx-auto px-4 lg:px-8">
+        <div className="text-center mb-10 lg:mb-14">
+          <p className="text-xs font-medium uppercase tracking-wider text-gray-500 mb-2">WHY CHOOSE US</p>
+          <h2 className="text-2xl lg:text-4xl font-bold text-gray-900">
+            Why <span className="text-xaidez-accent">Xaidez</span> is The Right Choice for You
+          </h2>
+          <div className="w-16 h-1 bg-xaidez-accent mx-auto mt-4"></div>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {reasons.map((reason, index) => (
-          <div 
-            key={index} 
-            className="bg-xaidez-light p-5 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 flex flex-col items-center text-center transform hover:-translate-y-1"
-          >
-            <div className="text-xaidez-accent mb-4">
-              {reason.icon}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+          <div className="lg:col-span-1 flex flex-col h-full">
+            <div className="relative flex-grow bg-gray-50 rounded-lg border border-gray-100 shadow-sm p-6">
+              <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 lg:left-10 lg:translate-x-0 bg-xaidez-accent text-white px-4 py-2 rounded-full text-sm font-medium">
+                The Xaidez Advantage
+              </div>
+              <div className="h-full flex flex-col justify-between">
+                <div>
+                  <h3 className="text-xl font-semibold mb-4 mt-4 text-gray-900">Exceptional Value & Service</h3>
+                  <p className="text-base text-gray-700 mb-6 italic">
+                    Join thousands of satisfied customers who trust Xaidez for quality products, exceptional service, and an unmatched shopping experience.
+                  </p>
+                  <ul className="space-y-4 mb-8">
+                    {[
+                      "Industry-leading customer satisfaction",
+                      "Comprehensive product warranty",
+                      "Flexible payment options"
+                    ].map((text, i) => (
+                      <li className="flex items-start" key={i}>
+                        <svg className="h-5 w-5 text-xaidez-accent mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span className="text-gray-700">{text}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              <Link href='/products'>
+              <button className="inline-flex items-center px-6 py-3 text-base font-medium rounded-md text-white bg-xaidez-secondary hover:bg-xaidez-hoveraccent transition-all duration-300 shadow-sm hover:shadow">
+                  Shop Now
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </button>
+              </Link>
+              </div>
             </div>
-            <h3 className="text-lg font-semibold text-xaidez-secondary mb-2">{reason.title}</h3>
-            <p className="text-sm text-gray-600">{reason.description}</p>
           </div>
-        ))}
+
+          <div className="lg:col-span-2">
+            <div className="grid grid-cols-2 gap-2 h-full">
+              {reasons.map((reason, index) => (
+                <div key={index} className="bg-white rounded-lg p-6 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full mb-4 bg-emerald-50 text-xaidez-accent">
+                    {React.cloneElement(reason.icon, {
+                      className: "h-6 w-6 text-xaidez-accent"
+                    })}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-800">
+                    {reason.title}
+                  </h3>
+                  <p className="text-base text-gray-600">
+                    {reason.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
-}
+};
+
+export default WhyChooseUs;

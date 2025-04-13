@@ -1,38 +1,42 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { Package, Users, Truck, Store } from "lucide-react"
 
 export function MetricsSection() {
   const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef(null)
 
-  const metrics = [
+  const metrics = useMemo(() => [
     {
       finalNumber: 10000,
       displayNumber: "10,000+",
       title: "Products",
-      icon: <Package className="h-10 w-10" />,
+      icon: <Package className="h-8 w-8" />,
+      color: "bg-blue-500",
     },
     {
       finalNumber: 50000,
       displayNumber: "50,000+",
       title: "Happy Customers",
-      icon: <Users className="h-10 w-10" />,
+      icon: <Users className="h-8 w-8" />,
+      color: "bg-green-500",
     },
     {
       finalNumber: 100000,
       displayNumber: "100,000+",
       title: "Orders Delivered",
-      icon: <Truck className="h-10 w-10" />,
+      icon: <Truck className="h-8 w-8" />,
+      color: "bg-purple-500",
     },
     {
       finalNumber: 25,
       displayNumber: "25+",
       title: "Outlets Nationwide",
-      icon: <Store className="h-10 w-10" />,
+      icon: <Store className="h-8 w-8" />,
+      color: "bg-orange-500",
     },
-  ]
+  ], [])
 
   const ANIMATION_DURATION = 2000
   const [counts, setCounts] = useState(metrics.map(() => 0))
@@ -47,11 +51,11 @@ export function MetricsSection() {
       },
       { threshold: 0.1 }
     )
-
-    if (sectionRef.current) observer.observe(sectionRef.current)
+    const section = sectionRef.current
+    if (section) observer.observe(section)
 
     return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current)
+      if (section) observer.unobserve(section)
     }
   }, [])
 
@@ -81,35 +85,51 @@ export function MetricsSection() {
     })
 
     return () => intervals.forEach(clearInterval)
-  }, [isVisible])
+  }, [isVisible, metrics])
 
-  const formatNumber = (num: number, withPlus = true) => {
-    return num.toLocaleString() + (withPlus ? "+" : "")
+  const formatNumber = (num: number) => {
+    return num.toLocaleString() + "+"
   }
 
   return (
-    <section ref={sectionRef} className="w-full max-w-7xl mx-auto px-3 py-12 bg-white">
-      <div className="text-center mb-10">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 relative inline-block pb-2 mb-2">
+    <section ref={sectionRef} className="w-full max-w-7xl mx-auto px-4 py-16 rounded-3xl">
+      <div className="text-center mb-12">
+      <p className="text-xs font-medium uppercase tracking-wider text-gray-500 mb-2">value delivered</p>
+        <h2 className="text-3xl font-bold text-gray-800 relative inline-block pb-3 mb-4">
           Our Impact
-          <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-xaidez-accent"></span>
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-1 rounded-full bg-xaidez-accent"></div>
         </h2>
-        <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto">
+        <p className="text-base text-gray-600 max-w-2xl mx-auto">
           We&apos;re proud of the journey so far — helping customers, delivering orders, and expanding across the country.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {metrics.map((metric, index) => (
           <div
             key={index}
-            className="bg-xaidez-light p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 flex flex-col items-center text-center transform hover:-translate-y-1"
+            className="flex flex-col items-center text-center group"
           >
-            <div className="text-xaidez-accent mb-4">{metric.icon}</div>
-            <h3 className="text-2xl font-bold text-xaidez-secondary mb-1">
-              {isVisible ? formatNumber(counts[index]) : "0"}
+            <div className="relative mb-6">
+              <div className="w-32 h-32 rounded-full bg-white shadow-lg flex items-center justify-center">
+                <div className={`w-24 h-24 ${metric.color} bg-opacity-10 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110`}>
+                  <div className={`text-${metric.color.split('-')[1]}-600`}>
+                    {metric.icon}
+                  </div>
+                </div>
+              </div>
+              
+              {/* Counter positioned at the bottom of the circle */}
+              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-white px-4 py-1 rounded-full shadow-md border border-gray-100">
+                <p className="text-xl font-bold text-gray-800">
+                  {isVisible ? formatNumber(counts[index]) : "0+"}
+                </p>
+              </div>
+            </div>
+            
+            <h3 className="mt-6 text-lg font-medium text-gray-800">
+              {metric.title}
             </h3>
-            <p className="text-sm text-gray-600 font-medium">{metric.title}</p>
           </div>
         ))}
       </div>

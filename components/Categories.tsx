@@ -1,70 +1,8 @@
-// import React from 'react';
-// import Marquee from 'react-fast-marquee';
-// import Image from 'next/image';
-
-// interface Product {
-//   id: string;
-//   name: string;
-//   slug: string;
-//   price: number;
-//   categoryName: string;
-//   imageUrl: string;
-// }
-
-// interface Props {
-//   items: Product[];
-// }
-
-// const CategoriesSection: React.FC<Props> = ({ items }) => {
-//   return (
-//     <div className="py-10 px-4  max-w-7xl mx-auto">
-//       <div className="text-center mb-8">
-//         <h2 className="text-2xl md:text-3xl font-bold text-gray-800 relative inline-block pb-2 mb-2">
-//           Categories
-//           <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-xaidez-accent"></span>
-//         </h2>
-//         <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto">
-//         Explore a world of Kashmiri treasures—curated just for you, across every category
-//         </p>
-//       </div>
-//       <Marquee pauseOnHover={true} speed={50} gradient={false}>
-//         {items.map((item) => (
-//           <div
-//             key={item.id}
-//             className="m-4 w-52 h-[17rem] flex-shrink-0 rounded-2xl bg-xaidez-light shadow-lg p-4 hover:shadow-xl transition-all duration-300 flex flex-col items-center"
-//           >
-//             <div className="relative w-32 h-32 rounded-lg overflow-hidden">
-//               <Image
-//                 src={item.imageUrl}
-//                 alt={item.name}
-//                 fill
-//                 className="object-cover"
-//                 sizes="(max-width: 768px) 100vw, 200px"
-//               />
-//             </div>
-
-//             <div className="mt-4 flex flex-col items-center text-center space-y-1">
-//               <p className="text-base font-semibold text-xaidez-secondary leading-tight">
-//                 {item.name}
-//               </p>
-//               <p className="text-sm text-gray-500">{item.categoryName}</p>
-//               <p className="text-base text-xaidez-accent font-bold">
-//                 ${item.price.toFixed(2)}
-//               </p>
-//             </div>
-//           </div>
-//         ))}
-//       </Marquee>
-//     </div>
-//   );
-// };
-
-// export default CategoriesSection;
-
-// components/Categories.tsx
 import React from 'react';
 import Marquee from 'react-fast-marquee';
 import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 
 interface Category {
   slug: string;
@@ -77,51 +15,59 @@ interface Props {
 }
 
 const CategoriesSection: React.FC<Props> = ({ items }) => {
-  // If no categories are available, display a fallback message.
   if (items.length === 0) {
     return (
-      <div className="py-10 px-4 max-w-7xl mx-auto text-center">
+      <div className="py-12 px-4 max-w-7xl mx-auto text-center text-gray-600">
         <p>No categories available at the moment. Please check back later!</p>
       </div>
     );
   }
 
   return (
-    <div className="py-10 px-4 max-w-7xl mx-auto">
-      <div className="text-center mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 relative inline-block pb-2 mb-2">
-          Categories
-          <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-xaidez-accent"></span>
-        </h2>
-        <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto">
-          Explore a world of Kashmiri treasures—curated just for you, across every category
-        </p>
-      </div>
-      <Marquee pauseOnHover={true} speed={50} gradient={false}>
-        {items.map((item) => (
-          <div
-            key={item.slug}
-            className="m-4 w-52 h-[15rem] flex-shrink-0 rounded-2xl bg-xaidez-light shadow-lg p-4 hover:shadow-xl transition-all duration-300 flex flex-col items-center"
-          >
-            <div className="relative w-32 h-32 rounded-lg overflow-hidden">
-              <Image
-                src={item.image || '/placeholder.svg'} 
-                alt={item.title || 'Category Image'} 
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 200px"
-              />
-            </div>
+    <section className="w-full bg-amber-50 py-12 lg:py-20">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="text-center mb-10 sm:mb-14">
+          <p className="text-xs font-medium uppercase tracking-wider text-gray-500 mb-2">EXPLORE</p>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
+            Discover by <span className="text-xaidez-accent">Category</span>
+          </h2>
+          <div className="w-16 h-1 bg-xaidez-accent mx-auto mt-4"></div>
+          <p className="mt-4 text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
+            Explore a world of Kashmiri treasures—curated just for you, across every category.
+          </p>
+        </div>
 
-            <div className="mt-4 flex flex-col items-center text-center space-y-1">
-              <p className="text-base font-semibold text-xaidez-secondary leading-tight">
-                {item.title || 'Category Name'} 
-              </p>
-            </div>
-          </div>
-        ))}
-      </Marquee>
-    </div>
+        <div className="overflow-hidden">
+          <Marquee pauseOnHover speed={70} gradient  gradientWidth={60}>
+            {items.map((item) => (
+              <Link
+                href={`/category/${item.slug}`}
+                key={item.slug}
+                className="m-4 w-64 h-72 flex-shrink-0 rounded-lg bg-white border border-gray-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col items-center p-5 cursor-pointer group"
+              >
+                <div className="relative w-40 h-40 rounded-full overflow-hidden mb-4 border-4 border-amber-100 group-hover:border-amber-200 transition-all duration-300">
+                  <Image
+                    src={item.image || '/placeholder.svg'}
+                    alt={item.title || 'Category Image'}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, 200px"
+                  />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-800 text-center group-hover:text-xaidez-accent transition-colors duration-300">
+                  {item.title || 'Category Name'}
+                </h3>
+                <div className="mt-3 flex items-center text-sm text-xaidez-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span>Browse collection</span>
+                  <ArrowRight size={16} className="ml-1" />
+                </div>
+              </Link>
+            ))}
+          </Marquee>
+        </div>
+
+      </div>
+    </section>
   );
 };
 

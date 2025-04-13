@@ -70,14 +70,14 @@ export default function HeroSection({ slides }: HeroSectionProps) {
 
   if (!slides || slides.length === 0) {
     return (
-      <div className="h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center bg-gray-100 text-gray-500 rounded-xl">
+      <div className="h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center bg-gradient-to-b from-amber-50 to-white text-gray-500 rounded-xl">
         <p>Oops! Something happened.</p>
       </div>
     );
   }
 
   return (
-    <div className="p-5 w-[10/11] mx-auto">
+    <div className="p-5 bg-amber-50  w-[10/11] mx-auto ">
       <div
         ref={heroSliderRef}
         className="relative w-full overflow-hidden rounded-xl"
@@ -122,13 +122,12 @@ export default function HeroSection({ slides }: HeroSectionProps) {
                   >
                     <h3 className="text-lg md:text-xl font-medium mb-2">{slide.title}</h3>
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{slide.subtitle}</h2>
-                    {/* Fallback since description doesn't exist in API */}
                     <p className="text-sm md:text-base mb-6 max-w-md">
                       Dried and grown under the perfect sunshine of Kashmir.
                     </p>
                     <Link
                       href={slide.action_link || "#"}
-                      className="inline-block px-6 py-3 bg-xaidez-accent hover:bg-xaidez-hoveraccent text-white font-medium rounded-md transition-colors duration-300"
+                      className="inline-block px-6 py-3 bg-xaidez-secondary hover:bg-xaidez-hoveraccent text-white font-medium rounded-md transition-colors duration-300"
                     >
                       {slide.action_title || "Shop Now"}
                     </Link>

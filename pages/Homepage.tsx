@@ -1,7 +1,7 @@
 import HeroSection from "@/components/Hero";
 import CategoriesSection from "@/components/Categories";
 import FeaturedProducts from "@/components/FeaturedProducts";
-import { WhyChooseUsSection } from "@/components/WhyChooseUs";
+import WhyChooseUsSection  from "@/components/WhyChooseUs";
 import { MetricsSection } from "@/components/MetricsSection";
 
 
@@ -25,19 +25,25 @@ export default async function Homepage() {
   }
 
   return (
-    <div>
+
+    <div className=" ">
+      <div className="bg-amber-50 ">
       <HeroSection slides={sliders} />
+      </div>
+      <div className="bg-amber-50 ">
       <CategoriesSection items={categories} />
-      <div className="hidden md:block">
+      </div>
+      <div className="bg-amber-50  hidden md:block">
         <WhyChooseUsSection />
         <FeaturedProducts products={products} />
       </div>
-      <div className="block md:hidden">
+      <div className="bg-amber-50  block md:hidden">
         <FeaturedProducts products={products} />
         <WhyChooseUsSection />
       </div>
-      
+      <div className="bg-amber-50 ">
       <MetricsSection />
+      </div>
     </div>
   );
 }
