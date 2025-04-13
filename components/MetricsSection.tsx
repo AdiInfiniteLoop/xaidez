@@ -32,7 +32,7 @@ export function MetricsSection() {
     {
       finalNumber: 25,
       displayNumber: "25+",
-      title: "Outlets Nationwide",
+      title: "Outlets ",
       icon: <Store className="h-8 w-8" />,
       color: "bg-orange-500",
     },
@@ -104,7 +104,7 @@ export function MetricsSection() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {metrics.map((metric, index) => (
           <div
             key={index}

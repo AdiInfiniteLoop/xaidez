@@ -2,7 +2,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Search, Menu, X } from 'lucide-react';
-import NavItem from './navbutton';
+import NavItem from './navbar/navbutton';
+import MoreDropdownButton from './navbar/MoreDropdownButton';
 import MobileMenuItem from './navbar/MobileMenuItem';
 
 const Navbar = () => {
@@ -44,12 +45,13 @@ const Navbar = () => {
               </span>
             </Link>
 
-            {/* Desktop navigation items */}
             <nav className="hidden lg:flex ml-8">
               <ul className="flex items-center space-x-1">
                 <NavItem href='/about' label='About'/>
-                <NavItem href='/specials' label='Specials'/>
                 <NavItem href='/contact' label='Contact'/>
+                <NavItem href='/photos' label='Photos'/>
+                <NavItem href='/videos' label='Videos'/>
+                <MoreDropdownButton />
               </ul>
             </nav>
           </div>
@@ -80,7 +82,6 @@ const Navbar = () => {
 
       </div>
 
-      {/*overlay*/}
       <div 
         className={`fixed inset-0 bg-black bg-opacity-70 z-40 transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
         onClick={toggleMobileMenu}
@@ -104,10 +105,16 @@ const Navbar = () => {
         
         <nav className="p-4">
           <ul className="space-y-1">
-            <MobileMenuItem href="/specials" label="Specials" onClick={toggleMobileMenu} />
             <MobileMenuItem href="/about" label="About" onClick={toggleMobileMenu} />
             <MobileMenuItem href="/contact" label="Contact" onClick={toggleMobileMenu} />
-            <MobileMenuItem href="/affiliate" label="Affiliate" onClick={toggleMobileMenu} />
+            <MobileMenuItem href="/photos" label="Photos" onClick={toggleMobileMenu} />
+            <MobileMenuItem href="/videos" label="Videos" onClick={toggleMobileMenu} />
+            <MobileMenuItem href="/certificates" label="Certificates" onClick={toggleMobileMenu} />
+            <MobileMenuItem href="/privacy-policy" label="Privacy Policy" onClick={toggleMobileMenu} />
+            <MobileMenuItem href="/disclaimer" label="Disclaimer" onClick={toggleMobileMenu} />
+            <MobileMenuItem href="/terms-conditions" label="Terms & Conditions" onClick={toggleMobileMenu} />
+            <MobileMenuItem href="/refund-policy" label="Refund Policy" onClick={toggleMobileMenu} />
+            <MobileMenuItem href="/shipping-policy" label="Shipping Policy" onClick={toggleMobileMenu} />
           </ul>
         </nav>
       </div>
