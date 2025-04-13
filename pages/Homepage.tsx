@@ -4,6 +4,8 @@ import FeaturedProducts from "@/components/FeaturedProducts";
 import { WhyChooseUsSection } from "@/components/WhyChooseUs";
 import { MetricsSection } from "@/components/MetricsSection";
 
+
+//Async = SSC(Not the graphs one)
 export default async function Homepage() {
   let sliders = [];
   let categories = [];
