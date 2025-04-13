@@ -45,11 +45,5 @@ export const products: Product[] = [
     price: 499.00,
     image: "https://images.unsplash.com/photo-1587049352851-8d4e89133924?q=80&w=2000&auto=format&fit=crop"
 
-  },
-  {
-    id: 7,
-    title: "Neque porro quisquam",
-    price: 225.00,
-    image: "https://images.unsplash.com/photo-1587049352851-8d4e89133924?q=80&w=2000&auto=format&fit=crop"
   }
 ];
