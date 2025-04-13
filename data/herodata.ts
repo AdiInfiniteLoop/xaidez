@@ -8,6 +8,13 @@ interface HeroSlide {
   link: string
 }
 
+/*            {
+                "title": "Enjoy the awesome fruits",
+                "subtitle": "Dried under perfect sunshine",
+                "image": "https://api.snowbankkashmir.com/uploads/TAWS_6f253a957a47c5219ab4b1e906f933dc.webp",
+                "action_title": "BUY NOW",
+                "action_link": "/Link_to_product"
+            }, */
 export const heroSlides: HeroSlide[] = [
     {
       id: "1",
