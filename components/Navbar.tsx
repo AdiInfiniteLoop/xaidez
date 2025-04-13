@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, Menu, X } from 'lucide-react';
+import { Search, Menu, X, Mail, Info, Camera, Video, Award, Shield, FileText, TruckIcon, RefreshCcw, FileQuestion } from 'lucide-react';
 import NavItem from './navbar/navbutton';
 import MoreDropdownButton from './navbar/MoreDropdownButton';
 import MobileMenuItem from './navbar/MobileMenuItem';
@@ -31,7 +31,7 @@ const Navbar = () => {
           <div className="flex items-center">
             {/* Mobile menu button */}
             <button 
-              className="lg:hidden text-white mr-3 lg:hover:text-purple-200 transition-colors"
+              className="xl:hidden text-white mr-3 xl:hover:text-purple-200 transition-colors"
               onClick={toggleMobileMenu}
               aria-label="Toggle menu"
             >
@@ -45,10 +45,9 @@ const Navbar = () => {
               </span>
             </Link>
 
-            <nav className="hidden lg:flex ml-8">
+            <nav className="hidden xl:flex ml-8">
               <ul className="flex items-center space-x-1">
                 <NavItem href='/about' label='About'/>
-                <NavItem href='/contact' label='Contact'/>
                 <NavItem href='/photos' label='Photos'/>
                 <NavItem href='/videos' label='Videos'/>
                 <MoreDropdownButton />
@@ -67,9 +66,21 @@ const Navbar = () => {
               <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             </div>
           </div>
+
+          {/* Contact button - Desktop */}
+          <div className="hidden md:flex items-center">
+            <Link 
+              href="/contact" 
+              className="flex items-center px-4 py-2 rounded-full bg-black bg-opacity-20 hover:bg-xaidez-hoveraccent text-white hover:bg-opacity-30 transition-all"
+            >
+              <Mail size={18} className="mr-2" />
+              <span>Contact Us</span>
+            </Link>
+          </div>
         </div>
 
-        <div className="md:hidden py-3">
+        {/* Mobile search and contact */}
+        <div className="md:hidden py-3 space-y-3">
           <div className="relative w-full">
             <input
               type="text"
@@ -79,7 +90,6 @@ const Navbar = () => {
             <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
           </div>
         </div>
-
       </div>
 
       <div 
@@ -94,7 +104,7 @@ const Navbar = () => {
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center">
               <span className="text-xl font-bold">
-                <span className=" px-2 py-1 rounded-md text-white">Xaidez</span>
+                <span className="px-2 py-1 rounded-md text-white">Xaidez</span>
               </span>
             </Link>
             <button onClick={toggleMobileMenu} className="text-gray-400 hover:text-white">
@@ -105,16 +115,66 @@ const Navbar = () => {
         
         <nav className="p-4">
           <ul className="space-y-1">
-            <MobileMenuItem href="/about" label="About" onClick={toggleMobileMenu} />
-            <MobileMenuItem href="/contact" label="Contact" onClick={toggleMobileMenu} />
-            <MobileMenuItem href="/photos" label="Photos" onClick={toggleMobileMenu} />
-            <MobileMenuItem href="/videos" label="Videos" onClick={toggleMobileMenu} />
-            <MobileMenuItem href="/certificates" label="Certificates" onClick={toggleMobileMenu} />
-            <MobileMenuItem href="/privacy-policy" label="Privacy Policy" onClick={toggleMobileMenu} />
-            <MobileMenuItem href="/disclaimer" label="Disclaimer" onClick={toggleMobileMenu} />
-            <MobileMenuItem href="/terms-conditions" label="Terms & Conditions" onClick={toggleMobileMenu} />
-            <MobileMenuItem href="/refund-policy" label="Refund Policy" onClick={toggleMobileMenu} />
-            <MobileMenuItem href="/shipping-policy" label="Shipping Policy" onClick={toggleMobileMenu} />
+            <MobileMenuItem 
+              href="/about" 
+              label="About" 
+              onClick={toggleMobileMenu} 
+              icon={<Info size={20} className="mr-3" />}
+            />
+            <MobileMenuItem 
+              href="/contact" 
+              label="Contact" 
+              onClick={toggleMobileMenu} 
+              icon={<Mail size={20} className="mr-3" />}
+            />
+            <MobileMenuItem 
+              href="/photos" 
+              label="Photos" 
+              onClick={toggleMobileMenu} 
+              icon={<Camera size={20} className="mr-3" />}
+            />
+            <MobileMenuItem 
+              href="/videos" 
+              label="Videos" 
+              onClick={toggleMobileMenu} 
+              icon={<Video size={20} className="mr-3" />}
+            />
+            <MobileMenuItem 
+              href="/certificates" 
+              label="Certificates" 
+              onClick={toggleMobileMenu} 
+              icon={<Award size={20} className="mr-3" />}
+            />
+            <MobileMenuItem 
+              href="/privacy-policy" 
+              label="Privacy Policy" 
+              onClick={toggleMobileMenu} 
+              icon={<Shield size={20} className="mr-3" />}
+            />
+            <MobileMenuItem 
+              href="/disclaimer" 
+              label="Disclaimer" 
+              onClick={toggleMobileMenu} 
+              icon={<FileText size={20} className="mr-3" />}
+            />
+            <MobileMenuItem 
+              href="/terms-conditions" 
+              label="Terms & Conditions" 
+              onClick={toggleMobileMenu} 
+              icon={<FileQuestion size={20} className="mr-3" />}
+            />
+            <MobileMenuItem 
+              href="/refund-policy" 
+              label="Refund Policy" 
+              onClick={toggleMobileMenu} 
+              icon={<RefreshCcw size={20} className="mr-3" />}
+            />
+            <MobileMenuItem 
+              href="/shipping-policy" 
+              label="Shipping Policy" 
+              onClick={toggleMobileMenu} 
+              icon={<TruckIcon size={20} className="mr-3" />}
+            />
           </ul>
         </nav>
       </div>
