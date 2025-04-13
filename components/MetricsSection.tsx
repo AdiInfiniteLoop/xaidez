@@ -34,7 +34,6 @@ export function MetricsSection() {
     },
   ]
 
-  // Animation duration in milliseconds
   const ANIMATION_DURATION = 2000
   const [counts, setCounts] = useState(metrics.map(() => 0))
 
@@ -46,19 +45,13 @@ export function MetricsSection() {
           setIsVisible(true)
         }
       },
-      {
-        threshold: 0.1, // Trigger when at least 10% of the element is visible
-      },
+      { threshold: 0.1 }
     )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
+    if (sectionRef.current) observer.observe(sectionRef.current)
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
-      }
+      if (sectionRef.current) observer.unobserve(sectionRef.current)
     }
   }, [])
 
@@ -66,7 +59,7 @@ export function MetricsSection() {
     if (!isVisible) return
 
     const intervals = metrics.map((metric, index) => {
-      const steps = Math.floor(ANIMATION_DURATION / 16) // ~60fps
+      const steps = Math.floor(ANIMATION_DURATION / 16)
       const stepValue = metric.finalNumber / steps
       let currentCount = 0
 
@@ -77,8 +70,8 @@ export function MetricsSection() {
           clearInterval(interval)
         }
 
-        setCounts((prevCounts) => {
-          const newCounts = [...prevCounts]
+        setCounts((prev) => {
+          const newCounts = [...prev]
           newCounts[index] = Math.floor(currentCount)
           return newCounts
         })
@@ -87,39 +80,38 @@ export function MetricsSection() {
       return interval
     })
 
-    return () => {
-      intervals.forEach((interval) => clearInterval(interval))
-    }
-  }, [isVisible, metrics])
+    return () => intervals.forEach(clearInterval)
+  }, [isVisible])
 
-  // Format the number with commas and a plus sign
   const formatNumber = (num: number, withPlus = true) => {
     return num.toLocaleString() + (withPlus ? "+" : "")
   }
 
   return (
-    <section ref={sectionRef} className="w-full py-16 bg-gray-50 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div
-          className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 rounded-xl bg-gray-800 p-8 shadow-xl ${
-            isVisible ? "animate-fade-in-up" : "opacity-0"
-          }`}
-        >
-          {metrics.map((metric, index) => (
-            <div
-              key={index}
-              className={`flex flex-col items-center text-center p-6 rounded-lg bg-gray-700 transform transition-all duration-500 hover:scale-105 hover:shadow-lg ${
-                isVisible ? `animate-fade-in-up animate-delay-${index * 100}` : "opacity-0"
-              }`}
-            >
-              <div className=" text-xaidez-accent mb-4 transform transition-all duration-500 hover:rotate-6">{metric.icon}</div>
-              <h3 className="text-3xl md:text-4xl font-bold text-xaidez-light mb-2">
-                {isVisible ? formatNumber(counts[index]) : "0"}
-              </h3>
-              <p className="text-xaidez-light font-medium">{metric.title}</p>
-            </div>
-          ))}
-        </div>
+    <section ref={sectionRef} className="w-full max-w-7xl mx-auto px-3 py-12 bg-white">
+      <div className="text-center mb-10">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 relative inline-block pb-2 mb-2">
+          Our Impact
+          <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-xaidez-accent"></span>
+        </h2>
+        <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto">
+          We&apos;re proud of the journey so far — helping customers, delivering orders, and expanding across the country.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {metrics.map((metric, index) => (
+          <div
+            key={index}
+            className="bg-xaidez-light p-6 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border border-gray-200 flex flex-col items-center text-center transform hover:-translate-y-1"
+          >
+            <div className="text-xaidez-accent mb-4">{metric.icon}</div>
+            <h3 className="text-2xl font-bold text-xaidez-secondary mb-1">
+              {isVisible ? formatNumber(counts[index]) : "0"}
+            </h3>
+            <p className="text-sm text-gray-600 font-medium">{metric.title}</p>
+          </div>
+        ))}
       </div>
     </section>
   )

@@ -1,15 +1,17 @@
-"use client"
 import Image from "next/image"
 import { products } from "@/data/featured-product"
 
 export default function FeaturedProducts() {
   return (
     <div className="w-full max-w-7xl mx-auto px-3 py-6">
-      <div className="mb-4">
-        <h2 className="text-xl font-bold text-gray-800 relative pb-2">
+      <div className="text-center mb-8">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 relative inline-block pb-2 mb-2">
           Featured Products
-          <span className="absolute bottom-0 left-0 w-20 h-1 bg-xaidez-accent"></span>
+          <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-xaidez-accent"></span>
         </h2>
+        <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto">
+        Handpicked Kashmiri favorites—where tradition meets trending.
+        </p>
       </div>
       
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">

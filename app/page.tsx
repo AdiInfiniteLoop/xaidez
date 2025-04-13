@@ -10,8 +10,14 @@ export default function Home() {
   <div>
   <HeroSection/>
   <CategoriesSection items={products} />
-  <WhyChooseUsSection/>
-  <FeaturedProducts/>
+    <div className="hidden md:block">
+    <WhyChooseUsSection/>
+    <FeaturedProducts/>
+    </div>
+    <div className="block md:hidden">
+    <FeaturedProducts/>
+    <WhyChooseUsSection/>
+    </div>
   <MetricsSection/>
   </div>
   );

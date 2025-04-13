@@ -18,10 +18,15 @@ interface Props {
 const CategoriesSection: React.FC<Props> = ({ items }) => {
   return (
     <div className="py-10 px-4  max-w-7xl mx-auto">
-        <h2 className="text-2xl font-bold text-gray-800 relative pb-2">
+      <div className="text-center mb-8">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 relative inline-block pb-2 mb-2">
           Categories
-          <span className="absolute bottom-0 left-0 w-24 h-1 bg-xaidez-accent"></span>
+          <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-xaidez-accent"></span>
         </h2>
+        <p className="text-sm md:text-base text-gray-600 max-w-2xl mx-auto">
+        Explore a world of Kashmiri treasures—curated just for you, across every category
+        </p>
+      </div>
       <Marquee pauseOnHover={true} speed={50} gradient={false}>
         {items.map((item) => (
           <div
