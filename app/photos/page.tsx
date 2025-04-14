@@ -1,9 +1,9 @@
-import React from 'react'
+import Gallery from '@/pages/Photopage'
 
 const page = () => {
   return (
     <div>
-      
+      <Gallery/>
     </div>
   )
 }
