@@ -1,11 +1,7 @@
-'use client'
-
-import { useState, useEffect } from 'react'
-import Image from 'next/image'
-
+import Image from 'next/image';
 
 interface RawGalleryItem {
-  title: string;  
+  title: string;
   cover: string;
 }
 
@@ -13,120 +9,89 @@ interface GalleryItem extends RawGalleryItem {
   decodedTitle: string;
 }
 
-export default function ImageGallery() {
-  const [gallery, setGallery] = useState<GalleryItem[]>([])
-  const [loading, setLoading] = useState<boolean>(true)
-  const [error, setError] = useState<string | null>(null)
-  
-  useEffect(() => {
-    const fetchGallery = async () => {
-      try {
-        setLoading(true)
-        
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/photos`)
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`)
-        }
-        
-        const result = await response.json()
-        
-        if (result.status !== 'success' || !Array.isArray(result.data)) {
-          throw new Error('Invalid response format')
-        }
-        console.log(result)
-        const processedData: GalleryItem[] = result.data.map((item: RawGalleryItem ) => ({
-          ...item,
-          decodedTitle: decodeBase64(item.title),
-        }))
-        
-        setGallery(processedData)
-        setError(null)
-      } catch (err: unknown) {
-        console.error('Error fetching gallery:', err)
-        setError('Failed to load gallery. Please try again later.')
-      } finally {
-        setLoading(false)
-      }
+const decodeBase64 = (base64String: string): string => {
+  try {
+    return Buffer.from(base64String, 'base64').toString('utf-8');
+  } catch {
+    return 'Untitled';
+  }
+};
+
+export default async function ImageGalleryPage() {
+  let gallery: GalleryItem[] = [];
+
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/photos`);
+
+    if (!response.ok) throw new Error('Failed to fetch');
+
+    const result = await response.json();
+
+    if (result.status !== 'success' || !Array.isArray(result.data)) {
+      throw new Error('Invalid data');
     }
-    
-    fetchGallery()
-  }, [])
-  
-  const decodeBase64 = (base64String: string): string => {
-    try {
-      return atob(base64String)
-    } catch (err) {
-      console.error('Error decoding base64:', err)
-      return 'Untitled'
-    }
+
+    gallery = result.data.map((item: RawGalleryItem) => ({
+      ...item,
+      decodedTitle: decodeBase64(item.title),
+    }));
+  } catch (err) {
+    console.error('Gallery fetch error:', err);
   }
-  
-  if (loading) {
+
+  if (!gallery.length) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-xl font-semibold text-gray-600">Loading gallery...</div> {/* Loader here */}
+      <div className="w-full max-w-7xl mx-auto px-4 py-12 text-center">
+        <p className="text-gray-600 font-medium">
+          No images available at the moment. Please check back later!
+        </p>
       </div>
-    )
+    );
   }
-  
-  if (error) {
-    return (
-      <div className="flex flex-col items-center justify-center h-64 p-4">
-        <div className="text-xl font-semibold text-red-600 mb-2">Error</div>
-        <div className="text-gray-700">{error}</div>
-        <button
-          onClick={() => window.location.reload()}
-          className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-        >
-          Retry
-        </button>
-      </div>
-    )
-  }
-  
-  if (gallery.length === 0) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-xl font-semibold text-gray-600">No images found</div>
-      </div>
-    )
-  }
-  
+
   return (
-    <div className="container mx-auto px-4 py-8">
-    <h1 className="text-3xl font-bold text-center mb-8">Image Gallery</h1>
-  
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
-      {gallery.map((item, index) => (
-        <div
-          key={index}
-          className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
-        >
-          <div className="relative w-full aspect-[16/9]">
-            <Image
-              src={item.cover}
-              alt={item.decodedTitle}
-              fill
-              sizes="(max-width: 640px) 100vw, 50vw"
-              className="object-cover rounded-t-lg"
-              onError={() => {
-                const fallbackImage = '/pomogrenate.webp';
-                const imgElement = document.querySelector(`[alt="${item.decodedTitle}"]`) as HTMLImageElement;
-                if (imgElement) {
-                  imgElement.src = fallbackImage;
-                  imgElement.alt = 'Image failed to load';
-                }
-              }}
-            />
-          </div>
-          <div className="p-4">
-            <h2 className="text-xl font-semibold text-gray-800">{item.decodedTitle}</h2>
-          </div>
+    <section className="w-full  py-16">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="text-center mb-12">
+          <p className="text-xs font-medium uppercase tracking-wider text-gray-500 mb-2">OUR COLLECTION</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Image  
+        <span className='pl-2 text-xaidez-accent'>
+       Gallery
+       </span>
+
+          </h2>
+          <div className="w-24 h-1 bg-xaidez-accent mx-auto mb-6" />
+          <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+            Explore our collection of beautiful images showcasing the finest moments captured.
+          </p>
         </div>
-      ))}
-    </div>
-  </div>
-  
-  )
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {gallery.map((item, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group"
+            >
+              <div className="relative w-full aspect-[16/9] overflow-hidden">
+                <Image
+                  src={item.cover}
+                  alt={item.decodedTitle}
+                  className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  priority
+                />
+              </div>
+              <div className="p-4">
+                <h3 className="text-base font-semibold text-gray-800 line-clamp-2 h-10 lg:h-6">
+                  {item.decodedTitle}
+                </h3>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
 }

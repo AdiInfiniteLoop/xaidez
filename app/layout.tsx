@@ -19,10 +19,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-amber-50`} >
       <NextTopLoader color="#d97006" />
         <Navbar />
-        <main className="min-h-screen">
+        <main className='min-h-screen'>  {/* Should I put h-screen here or not */}
           {children}
         </main>
       <Footer/>

@@ -25,24 +25,18 @@ export default async function Homepage() {
   }
 
   return (
-    <div className=" ">
-      <div className="bg-amber-50 ">
+    <div>
       <HeroSection slides={sliders} />
-      </div>
-      <div className="bg-amber-50 ">
       <CategoriesSection items={categories} />
-      </div>
-      <div className="bg-amber-50  hidden md:block">
+      <div className="hidden md:block">
         <WhyChooseUsSection />
         <FeaturedProducts products={products} />
       </div>
-      <div className="bg-amber-50  block md:hidden">
+      <div className="block md:hidden">
         <FeaturedProducts products={products} />
         <WhyChooseUsSection />
       </div>
-      <div className="bg-amber-50 ">
       <MetricsSection />
-      </div>
     </div>
   );
 }
