@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-
+import {decode} from 'he'
 export const metadata: Metadata = {
   title: 'Video Gallery',
   description: 'Explore our collection of curated videos showcasing our finest content.',
@@ -24,15 +24,15 @@ const decodeBase64 = (base64String: string): string => {
   }
 };
 
+
+
 export default async function VideosPage() {
   const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
   let videos: VideoData[] = [];
   let error: string | null = null;
 
   try {
-    const response = await fetch(`${apiUrl}/videos`, {
-      cache: 'no-store', // or { next: { revalidate: 60 } } for ISR
-    });
+    const response = await fetch(`${apiUrl}/videos`);
 
     if (!response.ok) throw new Error('Failed to fetch videos');
 
@@ -88,7 +88,8 @@ export default async function VideosPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {videos.map((video, index) => {
-            const decodedTitle = decodeBase64(video.title);
+            const decodedTitle = decode(decodeBase64(video.title));
+
             return (
               <div
                 key={`${video.title}-${index}`}
