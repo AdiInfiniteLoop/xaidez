@@ -117,7 +117,7 @@ const ProductsPage = ({ initialProducts, categories, searchParams }: ProductsPag
               clearFilters={clearFilters}
             />
 
-            {totalPages > 1 && (
+            {totalPages > 1 && products.length > 0 &&  (
               <Pagination 
                 page={page}
                 totalPages={totalPages}
