@@ -19,14 +19,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-amber-50`} >
+    <body className={`${inter.className} bg-amber-50`}>
       <NextTopLoader color="#d97006" />
+      <div className="flex flex-col min-h-screen">
         <Navbar />
-        <main className='min-h-screen'>  {/* Should I put h-screen here or not */}
+        <main className="flex-grow">
           {children}
         </main>
-      <Footer/>
-      </body>
+        <Footer />
+      </div>
+    </body>
+
     </html>
   )
 }
