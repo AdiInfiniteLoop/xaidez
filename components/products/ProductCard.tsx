@@ -11,7 +11,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow group">
       <div className="relative h-48 overflow-hidden">
         <Image
-          fill
+        height={400}
+        width={400}
           src={product.image || "/placeholder.svg"}
           alt={product.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"

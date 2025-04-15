@@ -15,7 +15,7 @@ export const useProductData = ({ initialProducts, categories, searchParams, rout
   const [selectedCategory, setSelectedCategory] = useState<string>(searchParams.category || "")
   const [selectedCollection, setSelectedCollection] = useState<string>(searchParams.collection || "")
   const [searchQuery, setSearchQuery] = useState<string>(searchParams.query || "")
-  const [page, setPage] = useState<number>(Number.parseInt(searchParams.page || "1", 100))
+  const [page, setPage] = useState<number>(Number.parseInt(searchParams.page || "1", 10))
   const [totalPages, setTotalPages] = useState<number>(0)
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
@@ -65,7 +65,6 @@ export const useProductData = ({ initialProducts, categories, searchParams, rout
         setProducts(data.data.products)
         setTotalPages(data.data.totalPages)
       } else {
-        console.error("No products found in the response.")
         setProducts([])
       }
     } catch (error) {
@@ -83,20 +82,24 @@ export const useProductData = ({ initialProducts, categories, searchParams, rout
   const handleCategorySelect = useCallback((categorySlug: string): void => {
     if (selectedCategory === categorySlug) {
       setSelectedCategory("")
+      setPage(1) 
       updateFilters({ category: "", page: 1 })
     } else {
       setSelectedCategory(categorySlug)
-      setSelectedCollection("")
+      setSelectedCollection("") 
+      setPage(1) 
       updateFilters({ category: categorySlug, collection: "", page: 1 })
     }
   }, [selectedCategory, updateFilters])
-
+  
   const handleCollectionSelect = useCallback((collectionSlug: string): void => {
     if (selectedCollection === collectionSlug) {
       setSelectedCollection("")
+      setPage(1) 
       updateFilters({ collection: "", page: 1 })
     } else {
       setSelectedCollection(collectionSlug)
+      setPage(1) 
       updateFilters({ collection: collectionSlug, page: 1 })
     }
   }, [selectedCollection, updateFilters])
