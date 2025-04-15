@@ -234,9 +234,6 @@ export default function ContactUs() {
         </div>
         
         <div className="max-w-4xl mx-auto mt-8 text-center">
-          <p className="text-sm text-gray-600">
-            Last updated on April 16, 2025. We typically respond to all inquiries within 24-48 hours during business days.
-          </p>
           <div className="mt-4">
             <a href="/refund-policy" className="text-sm text-xaidez-accent hover:underline mr-4">
               Refund Policy

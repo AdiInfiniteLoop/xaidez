@@ -101,9 +101,6 @@ export default function ShippingPolicy() {
           </div>
 
           <div className="mt-8 pt-6 border-t border-gray-200">
-            <p className="text-sm text-gray-600">
-              Last updated on April 16, 2025. For any shipping related queries, please contact our customer support team.
-            </p>
             <div className="mt-4">
               <a href="/refund-policy" className="text-sm text-xaidez-accent hover:underline mr-4">
                 Refund Policy

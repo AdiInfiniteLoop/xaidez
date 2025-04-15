@@ -86,9 +86,6 @@ export default function TermsConditions() {
           </div>
 
           <div className="mt-8 pt-6 border-t border-gray-200">
-            <p className="text-sm text-gray-600">
-              Last updated on April 16, 2025.
-            </p>
             <div className="mt-4">
               <a href="/privacy-policy" className="text-sm text-xaidez-accent hover:underline mr-4">
                 Privacy Policy

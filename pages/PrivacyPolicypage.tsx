@@ -89,9 +89,7 @@ export default function PrivacyPolicy() {
           </div>
 
           <div className="mt-8 pt-6 border-t border-gray-200">
-            <p className="text-sm text-gray-600">
-              Last updated on April 16, 2025. If you have any questions about our privacy practices, please contact us.
-            </p>
+
             <div className="mt-4">
               <a href="/disclaimer" className="text-sm text-xaidez-accent hover:underline">
                 Read our Disclaimer
