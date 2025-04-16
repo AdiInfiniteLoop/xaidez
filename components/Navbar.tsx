@@ -53,17 +53,7 @@ const Navbar = () => {
             </nav>
           </div>
 
-          {/* Center - Search bar */}
-          <div className="hidden md:flex flex-1 max-w-md mx-6">
-            <div className="relative w-full">
-              <input
-                type="text"
-                placeholder="Search products..."
-                className="w-full py-2 px-4 pl-10 rounded-full border-0 bg-black bg-opacity-20 text-white placeholder-gray-400 focus:bg-black focus:bg-opacity-30 focus:ring-2 focus:ring-xaidez-accent focus:outline-none transition-all"
-              />
-              <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-            </div>
-          </div>
+
           <div className="hidden md:flex items-center">
           <Link 
             href="/contact" 
@@ -76,17 +66,7 @@ const Navbar = () => {
 
         </div>
 
-        {/* Mobile search and contact */}
-        <div className="md:hidden py-3 space-y-3">
-          <div className="relative w-full">
-            <input
-              type="text"
-              placeholder="Search products..."
-              className="w-full py-2 px-4 pl-10 rounded-full border-0 bg-black bg-opacity-20 text-white placeholder-gray-400 focus:bg-black focus:bg-opacity-30 focus:outline-none focus:ring-2 focus:ring-xaidez-accent transition-all"
-            />
-            <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-          </div>
-        </div>
+
       </div>
 
       <div 
