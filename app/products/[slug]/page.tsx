@@ -60,7 +60,7 @@ async function getProduct(slug: string): Promise<ProductData> {
     return data.data;
   } catch (error) {
     console.error("Error fetching product:", error);
-    notFound(); // Ensure you handle or return the appropriate fallback if not found
+    notFound(); 
   }
 }
 
@@ -107,7 +107,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
               <ProductImageGallery images={allImages} title={title} />
               
               <div className="mt-4">
-                <ProductActions />
+                <ProductActions productName={title}/>
               </div>
             </div>
   

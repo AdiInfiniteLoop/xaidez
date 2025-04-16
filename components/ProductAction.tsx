@@ -1,4 +1,7 @@
-export default  function ProductActions() {
+import { SITE_INFO } from "@/config"
+import Link from "next/link"
+
+export default  function ProductActions({productName}:{productName: string}) {
     const WhatsAppIcon = () => (
       <svg 
         xmlns="http://www.w3.org/2000/svg" 
@@ -11,15 +14,16 @@ export default  function ProductActions() {
     )
   
     return (
-      <div className="space-y-4 pt-4">
+      <Link href={`${SITE_INFO.cta_url}?text=${productName}`} rel="noopener noreferrer" target="_blank">
+        <div className="space-y-4 pt-4">
         <button
           type="button"
-          className="w-full bg-green-500  text-white py-4 px-6 rounded-lg hover:bg-xaidez-hoveraccent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors flex items-center justify-center gap-2 font-medium"
+          className="w-full bg-green-500  text-white py-4 px-6 rounded-lg hover:bg-xaidez-hoveraccent  transition-colors flex items-center justify-center gap-2 font-medium"
         >
           <WhatsAppIcon />
           Buy Now on WhatsApp
         </button>
-  
       </div>
+        </Link>
     )
   }

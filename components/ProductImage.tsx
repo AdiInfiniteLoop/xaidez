@@ -15,7 +15,7 @@ export default function ProductImageGallery({ images, title }: ProductImageGalle
   const [fade, setFade] = useState(false)
 
   const visibleCount = 3
-  const maxIndex = Math.max(0, images.length - visibleCount)
+  const maxIndex = Math.max(0, images.length - visibleCount - 1)
 
   const handlePrev = () => setStartIndex(Math.max(0, startIndex - 1))
   const handleNext = () => setStartIndex(Math.min(maxIndex, startIndex + 1))
