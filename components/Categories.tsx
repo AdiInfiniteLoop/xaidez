@@ -41,13 +41,13 @@ const CategoriesSection: React.FC<Props> = ({ items }) => {
           <Marquee pauseOnHover speed={70} gradient  gradientWidth={60}>
             {items.map((item) => (
               <Link
-                href={`/category/${item.slug}`}
+                href={`/products?category=${item.slug}`}
                 key={item.slug}
                 className="m-4 w-64 h-72 flex-shrink-0 rounded-lg bg-white border border-gray-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col items-center p-5 cursor-pointer group"
               >
                 <div className="relative w-40 h-40 rounded-full overflow-hidden mb-4 border-4 border-amber-100 group-hover:border-amber-200 transition-all duration-300">
                   <Image
-                    src={item.image || '/placeholder.svg'}
+                    src={item.image}
                     alt={item.title || 'Category Image'}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
