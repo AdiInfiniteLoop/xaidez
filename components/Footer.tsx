@@ -1,192 +1,300 @@
-import Link from "next/link";
-// import Image from "next/image";
-import ToTopButton from "./ToTopButton";
-import { SITE_INFO } from "../config";
-import { 
-  Facebook, 
-  Instagram, 
-  AtSign, 
-  Youtube, 
-  Twitter, 
-  MapPin, 
-  Phone, 
-  Clock, 
-  Heart, 
-  ArrowRight 
-} from "lucide-react";
+import Link from "next/link"
+import {
+  ArrowRight,
+  Facebook,
+  Instagram,
+  Mail,
+  MapPin,
+  Phone,
+  Twitter,
+  ShoppingBag,
+  Gift,
+  CreditCard,
+  Heart,
+  Youtube,
+  Clock,
+  ShoppingBagIcon,
+  TruckIcon,
+  GiftIcon,
+} from "lucide-react"
 
-export default function DarkFooter() {
-  const currentYear = new Date().getFullYear();
-  
+import { SITE_INFO } from "@/config"
+const policies = [
+  { label: "Privacy Policy", link: "/privacy-policy" },
+  { label: "Disclaimer", link: "/disclaimer" },
+  { label: "Shipping Policy", link: "/shipping-policy" },
+  { label: "Refund Policy", link: "/refund-policy" },
+  { label: "Terms & Conditions", link: "/terms-conditions" }
+]
+
+const quicklinks = [
+{
+  label: "About Us",
+  link: "/about"
+}, 
+{
+  label: "Contact Us",
+  link:'/contact'
+},
+{
+  label:"Products",
+  link:"/products"
+},
+{
+  label:"Gallery",
+  link:"/photos"
+},
+{
+  label:"Certificates",
+  link:"/certificates"
+}
+
+]
+
+export default function EcommerceFooter() {
+
   return (
-    <footer className="bg-xaidez-secondary text-gray-300 mt-20 ">
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="relative  h-8 -mt-12 mb-8">
-          <svg className="absolute bottom-0 w-full" viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fillRule="evenodd" clipRule="evenodd" d="M0 0L60 10C120 20 240 40 360 46.7C480 53.3 600 46.7 720 40C840 33.3 960 26.7 1080 33.3C1200 40 1320 60 1380 70L1440 80V100H1380C1320 100 1200 100 1080 100C960 100 840 100 720 100C600 100 480 100 360 100C240 100 120 100 60 100H0V0Z" fill="#1F2937"/>
-          </svg>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-          <div className="space-y-6">
-            <div className="flex items-center">
-              {/* <div className="relative h-12 w-12 mr-3">
-                <Image
-                  src="/images/logo-light.png"
-                  alt="Company Logo"
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div> */}
-              <span className="text-white text-2xl font-bold tracking-tight">{SITE_INFO.sitename}</span>
-            </div>
-            
-            <i className="text-gray-400">
-              {SITE_INFO.slogan}
-            </i>
-            
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <MapPin size={18} className="text-xaidez-accent flex-shrink-0" />
-                <p className="text-gray-300">{SITE_INFO.address}</p>
+    <div className="w-full bg-white">
+      <section className="w-full bg-xaidez-dark py-16 md:px-10 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-32 h-32 rounded-full bg-xaidez-accent opacity-10 transform -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full bg-xaidez-accent opacity-10 transform translate-x-1/3 translate-y-1/3"></div>
+        <div className="absolute top-1/2 right-10 w-16 h-16 rounded-full bg-xaidez-accent opacity-20 transform -translate-y-1/2"></div>
+
+        <div className="container px-4 md:px-6 relative z-10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="space-y-4 text-center md:text-left md:max-w-[60%]">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter md:text-5xl text-xaidez-accent">
+                  {SITE_INFO.slogan}
+                </h2>
+                <p className="max-w-[700px] text-xaidez-light md:text-xl">
+                  Join thousands of satisfied customers and discover premium Kashmir products at unbeatable prices.
+                </p>
               </div>
-              
-              <div className="flex items-center gap-3">
-                <Phone size={18} className="text-xaidez-accent flex-shrink-0" />
-                <p className="text-gray-300">{SITE_INFO.mobile[0]}</p>
-              </div>
-              
-              <div className="flex items-center gap-3">
-                <Clock size={18} className="text-xaidez-accent flex-shrink-0" />
-                <p className="text-gray-300">{SITE_INFO.timing[0]}</p>
-              </div>
-            </div>
-            
-            <div className="flex space-x-4 pt-2">
-              <a
-                href={SITE_INFO.social.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="bg-gray-800 p-2 rounded-full hover:bg-xaidez-hoveraccent transition-colors duration-300"
-              >
-                <Facebook size={20} />
-              </a>
-              <a
-                href={SITE_INFO.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="bg-gray-800 p-2 rounded-full hover:bg-xaidez-hoveraccent transition-colors duration-300"
-              >
-                <Instagram size={20} />
-              </a>
-              <a
-                href={SITE_INFO.social.threads}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Threads"
-                className="bg-gray-800 p-2 rounded-full hover:bg-xaidez-hoveraccent transition-colors duration-300"
-              >
-                <AtSign size={20} />
-              </a>
-              <a
-                href={SITE_INFO.social.youtube}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="YouTube"
-                className="bg-gray-800 p-2 rounded-full hover:bg-xaidez-hoveraccent transition-colors duration-300"
-              >
-                <Youtube size={20} />
-              </a>
-              <a
-                href={SITE_INFO.social.x}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="X"
-                className="bg-gray-800 p-2 rounded-full hover:bg-xaidez-hoveraccent transition-colors duration-300"
-              >
-                <Twitter size={20} />
-              </a>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-white text-xl font-semibold mb-6 flex items-center">
-              <span className="border-b-2 border-xaidez-accent pb-1">Main Navigation</span>
-            </h3>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {[
-                { href: "/", label: "Home" },
-                { href: "/about", label: "About Us" },
-                { href: "/products", label: "Products" },
-                { href: "/contact", label: "Contact" },
-                { href: "/photos", label: "Photos" },
-                { href: "/videos", label: "Videos" },
-                { href: "/certificates", label: "Certificates" }
-              ].map((link) => (
-                <li key={link.href}>
-                  <Link 
-                    href={link.href} 
-                    className="text-gray-400 hover:text-white flex items-center gap-2 group transition-colors duration-300"
-                  >
-                    <ArrowRight size={16} className="opacity-0 -ml-6 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Policies & Information */}
-          <div>
-            <h3 className="text-white text-xl font-semibold mb-6 flex items-center">
-              <span className="border-b-2 border-xaidez-accent pb-1">Policies & Information</span>
-            </h3>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {[
-                { href: "/privacy-policy", label: "Privacy Policy" },
-                { href: "/disclaimer", label: "Disclaimer" },
-                { href: "/terms-conditions", label: "Terms & Conditions" },
-                { href: "/refund-policy", label: "Refund Policy" },
-                { href: "/shipping-policy", label: "Shipping Policy" }
-              ].map((link) => (
-                <li key={link.href}>
-                  <Link 
-                    href={link.href} 
-                    className="text-gray-400 hover:text-white flex items-center gap-2 group transition-colors duration-300"
-                  >
-                    <ArrowRight size={16} className="opacity-0 -ml-6 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-
-          </div>
-        </div>
-      </div>
-
-      <div className="border-t border-gray-800 mt-8">
-        <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-sm text-gray-500 mb-4 md:mb-0 flex items-center">
-              <Heart size={14} className="text-red-500 mr-1" />
-              &copy; {currentYear} {SITE_INFO.sitename}. All rights reserved.
-            </div>
-            <div className="text-sm text-gray-500">
-              Designed and developed by{" "}
-              <Link href={SITE_INFO.developer.link} className="text-xaidez-accent hover:text-white transition-colors">
-                {SITE_INFO.developer.name}
+              <div className="space-x-4">
+                <Link 
+                  href={SITE_INFO.cta_url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-xaidez-accent hover:bg-xaidez-hoveraccent text-white font-medium transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
+                  Contact Now
+                </Link>
+              <Link href='/products'>
+                <button
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-full border-2 border-xaidez-accent text-xaidez-accent hover:bg-[#f9e6d7] font-medium transition-all duration-300 transform hover:scale-105 shadow-md"
+                >
+                  View Products
+                </button>
               </Link>
+              </div>
+            </div>
+
+            <div className="relative w-full max-w-[300px] h-[200px] md:h-[250px]">
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-white rounded-full shadow-xl flex items-center justify-center">
+                <ShoppingBag size={80} className="text-xaidez-accent" />
+              </div>
+              <div className="absolute top-0 right-0 w-20 h-20 bg-white rounded-full shadow-lg flex items-center justify-center animate-pulse">
+                <Gift size={30} className="text-xaidez-accent" />
+              </div>
+              <div className="absolute bottom-0 left-0 w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center animate-pulse">
+                <CreditCard size={24} className="text-xaidez-accent" />
+              </div>
+              <div
+                className="absolute bottom-10 right-10 w-14 h-14 bg-white rounded-full shadow-lg flex items-center justify-center animate-pulse"
+                style={{ animationDelay: "1s" }}
+              >
+                <Heart size={20} className="text-xaidez-accent" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Back to top button */}
-      <ToTopButton />
-    </footer>
-  );
+      {/* Footer */}
+      <footer className="w-full bg-white pt-12 pb-6 border-t relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-xaidez-accent to-transparent"></div>
+        <div className="absolute -top-8 left-1/4 w-16 h-16 rounded-full bg-[#f9e6d7] opacity-70"></div>
+        <div className="absolute top-1/3 right-0 w-32 h-32 rounded-full bg-[#f9e6d7] opacity-50 transform translate-x-1/2"></div>
+
+        <div className="container px-4 md:px-6 mx-auto">
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
+            {/* Company Info and Contact */}
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <div className="flex items-center space-x-2">
+                  <div className="w-10 h-10 rounded-full bg-xaidez-accent flex items-center justify-center">
+                    <ShoppingBag size={20} className="text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-xaidez-accent">{SITE_INFO.sitename}</h3>
+                </div>
+                <p className="text-gray-500">
+                  Your one-stop destination for authentic Kashmir products. Quality saffron, exquisite handicrafts, and exceptional service.
+                </p>
+                <div className="flex space-x-4">
+                  <Link
+                    href={SITE_INFO.social.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-gray-100 hover:bg-[#f9e6d7] flex items-center justify-center transition-colors duration-300"
+                  >
+                    <Facebook size={20} className="text-xaidez-accent" />
+                    <span className="sr-only">Facebook</span>
+                  </Link>
+                  <Link
+                    href={SITE_INFO.social.x}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-gray-100 hover:bg-[#f9e6d7] flex items-center justify-center transition-colors duration-300"
+                  >
+                    <Twitter size={20} className="text-xaidez-accent" />
+                    <span className="sr-only">X (Twitter)</span>
+                  </Link>
+                  <Link
+                    href={SITE_INFO.social.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-gray-100 hover:bg-[#f9e6d7] flex items-center justify-center transition-colors duration-300"
+                  >
+                    <Instagram size={20} className="text-xaidez-accent" />
+                    <span className="sr-only">Instagram</span>
+                  </Link>
+                  <Link
+                    href={SITE_INFO.social.youtube}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full bg-gray-100 hover:bg-[#f9e6d7] flex items-center justify-center transition-colors duration-300"
+                  >
+                    <Youtube size={20} className="text-xaidez-accent" />
+                    <span className="sr-only">YouTube</span>
+                  </Link>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-xaidez-accent">Contact Us</h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start space-x-3">
+                    <MapPin size={20} className="text-xaidez-accent flex-shrink-0 mt-1" />
+                    <span className="text-gray-600">{SITE_INFO.address}</span>
+                  </li>
+                  <li className="flex items-center space-x-3">
+                    <Phone size={20} className="text-xaidez-accent" />
+                    <span className="text-gray-600">{SITE_INFO.mobile[0]}</span>
+                  </li>
+                  <li className="flex items-center space-x-3">
+                    <Mail size={20} className="text-xaidez-accent" />
+                    <span className="text-gray-600">{SITE_INFO.email[0]} |</span>
+                     <br />
+                    <span className="text-gray-600">{SITE_INFO.email[1]}</span>
+                  </li>
+                  <li className="flex items-center space-x-3">
+                    <Clock size={20} className="text-xaidez-accent" />
+                    <span className="text-gray-600">{SITE_INFO.timing[0]}</span>
+                  </li>
+                </ul>
+              </div>              
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-6">
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-2">
+                    <ShoppingBagIcon className="text-xaidez-accent"/>
+                    <h3 className="text-xl font-bold text-xaidez-accent">Quick Links</h3>
+                  </div>
+                  <ul className="space-y-3">
+                    {quicklinks.map(
+                      (item) => (
+                        <li key={item.label}>
+                          <Link
+                            href={item.link}
+                            className="text-gray-600 hover:text-xaidez-accent transition-colors duration-300 flex items-center group"
+                          >
+                            <ArrowRight
+                              size={14}
+                              className="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1"
+                            />
+                            <span>{item.label}</span>
+                          </Link>
+                        </li>
+                      ),
+                    )}
+                  </ul>
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-2">
+                    <TruckIcon className="text-xaidez-accent"/>
+                    <h3 className="text-xl font-bold text-xaidez-accent">Policies and Information</h3>
+                  </div>
+                  <ul className="space-y-3">
+                    {policies.map(
+                      (item) => (
+                        <li key={item.label}>
+                          <Link
+                            href={item.link}
+                            className="text-gray-600 hover:text-xaidez-accent transition-colors duration-300 flex items-center group"
+                          >
+                            <ArrowRight
+                              size={14}
+                              className="mr-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1"
+                            />
+                            <span>{item.label}</span>
+                          </Link>
+                        </li>
+                      ),
+                    )}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-12 pt-8 border-t">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="flex flex-col items-center text-center space-y-2 p-4 rounded-lg hover:bg-[#f9e6d7] transition-colors duration-300">
+                <CreditCard className="text-xaidez-accent"/>
+                <h4 className="font-semibold text-xaidez-accent">Secure Payment</h4>
+                <p className="text-xs text-gray-500">Multiple payment options available</p>
+              </div>
+              <div className="flex flex-col items-center text-center space-y-2 p-4 rounded-lg hover:bg-[#f9e6d7] transition-colors duration-300">
+                <GiftIcon className="text-xaidez-accent"/>
+                <h4 className="font-semibold text-xaidez-accent">Authentic Handicrafts</h4>
+                <p className="text-xs text-gray-500">Genuine Kashmir products</p>
+              </div>
+              <div className="flex flex-col items-center text-center space-y-2 p-4 rounded-lg hover:bg-[#f9e6d7] transition-colors duration-300">
+                <Heart className="text-xaidez-accent"/>
+                <h4 className="font-semibold text-xaidez-accent">Premium Quality</h4>
+                <p className="text-xs text-gray-500">Highest quality Kashmiri products</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-10 border-t pt-6">
+            <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+              <p className="text-xs text-gray-500">
+                © {new Date().getFullYear()} {SITE_INFO.sitename}. All rights reserved. 
+                Developed by <a href={SITE_INFO.developer.link} className="text-xaidez-accent hover:underline">{SITE_INFO.developer.name}</a>
+              </p>
+              <div className="flex space-x-4 text-xs text-gray-500">
+                <Link href="/privacy-policy" className="hover:text-xaidez-accent transition-colors duration-300">
+                  Privacy Policy
+                </Link>
+                <Link href="/terms-and-conditions" className="hover:text-xaidez-accent transition-colors duration-300">
+                  Terms of Service
+                </Link>
+                <Link href="/disclaimer" className="hover:text-xaidez-accent transition-colors duration-300">
+                  Disclaimer
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
 }
