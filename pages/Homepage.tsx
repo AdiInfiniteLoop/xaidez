@@ -5,6 +5,7 @@ import WhyChooseUsSection  from "@/components/WhyChooseUs";
 import { MetricsSection } from "@/components/MetricsSection";
 import axios from "axios";
 import MapSection from "@/components/Map";
+import TestimonialsSection from "@/components/Testimonials";
 
 
 //Async = SSC(Not the graphs one)
@@ -41,6 +42,7 @@ export default async function Homepage() {
         <WhyChooseUsSection />
       </div>
       <MetricsSection />
+      <TestimonialsSection/>
       <MapSection/>
     </div>
   );

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SITE_INFO } from "../config";
 
 export default function ContactSection() {
@@ -5,11 +6,10 @@ export default function ContactSection() {
     <div className="bg-amber-50 pb-16">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Title Section */}
         <div className="text-center mb-8">
       <p className="text-xs font-medium uppercase tracking-wider text-gray-500 mb-2">Our place</p>
 
-          <h2 className="text-3xl font-bold mt-4 mb-2">
+          <h2 className="text-3xl font-bold  mb-2">
             Get in <span className="text-xaidez-accent underline">Touch</span>
           </h2>
           <p className="text-gray-600">
@@ -31,17 +31,18 @@ export default function ContactSection() {
             <div className="space-y-4">
               <div className="flex items-center">
                 <div className="bg-blue-100 p-2 rounded-full">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-xaidez-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-xaidez-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h18M3 5l9 7 9-7M3 19h18V5H3v14z" />
+                </svg>
+
                 </div>
                 <div className="ml-4">
-                  <p className="text-sm text-gray-500">Call us at</p>
-                  <p className="font-medium">{SITE_INFO.mobile}</p>
+                  <p className="text-sm text-gray-500">Reach us at</p>
+                  <p className="font-medium">{SITE_INFO.email[0]}</p>
+                  <p className="font-medium">{SITE_INFO.email[1]}</p>
                 </div>
               </div>
               
-              {/* WhatsApp */}
               <div className="flex items-center">
                 <div className="bg-blue-100 p-2 rounded-full">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-xaidez-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -68,12 +69,14 @@ export default function ContactSection() {
               </div>
             </div>
             
+            <Link href='/contact'>
             <button className="mt-6 w-full bg-xaidez-dark hover:bg-xaidez-hoveraccent text-white py-3 px-4 rounded flex items-center justify-center transition-colors">
               Contact Us
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </button>
+            </Link>
           </div>
           
           <div className="flex-1">

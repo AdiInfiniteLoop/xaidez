@@ -21,7 +21,7 @@ export default function DarkFooter() {
   return (
     <footer className="bg-xaidez-secondary text-gray-300 mt-20 ">
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="relative  h-8 -mt-16 mb-8">
+        <div className="relative  h-8 -mt-12 mb-8">
           <svg className="absolute bottom-0 w-full" viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" clipRule="evenodd" d="M0 0L60 10C120 20 240 40 360 46.7C480 53.3 600 46.7 720 40C840 33.3 960 26.7 1080 33.3C1200 40 1320 60 1380 70L1440 80V100H1380C1320 100 1200 100 1080 100C960 100 840 100 720 100C600 100 480 100 360 100C240 100 120 100 60 100H0V0Z" fill="#1F2937"/>
           </svg>
