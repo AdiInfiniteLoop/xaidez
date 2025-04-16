@@ -3,7 +3,7 @@ export default function ToTopButton() {
     return (
         <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className="fixed bottom-6 right-6 p-3 rounded-full bg-gray-700 text-white shadow-lg hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
+        className="z-50  fixed bottom-6 right-6 p-3 rounded-full bg-gray-700 text-white shadow-lg hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500"
         aria-label="Back to top"
       >
         <svg

@@ -14,3 +14,7 @@
   .overflow-x-auto::-webkit-scrollbar {
     display: none;
   }
+  .animate {
+    @apply opacity-100 translate-x-0 translate-y-0;
+  }
+  
