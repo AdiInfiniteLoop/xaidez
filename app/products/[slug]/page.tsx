@@ -5,6 +5,7 @@ import ProductImageGallery from "@/components/ProductImage"
 import { Star } from "lucide-react"
 import ProductActions from "@/components/ProductAction"
 import ExpandableText from "@/components/Expandabletext"
+import axios from 'axios';
 
 interface ProductResponse {
   status: string
@@ -45,24 +46,21 @@ function decodeBase64(str: string): string {
   }
 }
 
+
 async function getProduct(slug: string): Promise<ProductData> {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products/${slug}`)
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products/${slug}`);
 
-    if (!response.ok) {
-      throw new Error(`Failed to fetch product: ${response.status}`)
-    }
-
-    const data: ProductResponse = await response.json()
+    const data: ProductResponse = response.data;
 
     if (data.status !== "success") {
-      throw new Error(data.message || "Failed to fetch product data")
+      throw new Error(data.message || "Failed to fetch product data");
     }
 
-    return data.data
+    return data.data;
   } catch (error) {
-    console.error("Error fetching product:", error)
-    notFound()
+    console.error("Error fetching product:", error);
+    notFound(); // Ensure you handle or return the appropriate fallback if not found
   }
 }
 

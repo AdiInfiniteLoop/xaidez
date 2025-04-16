@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Metadata } from 'next';
+import axios from 'axios';
 
 export const metadata: Metadata = {
   title: 'Our Certificates',
@@ -25,25 +26,22 @@ const decodeTitle = (title: string) => {
   }
 };
 
+
 async function getCertificates(): Promise<Certificate[] | null> {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
-    const response = await fetch(`${apiUrl}/certificates`, {
-      cache: 'no-store',
-    });
+    const response = await axios.get(`${apiUrl}/certificates`);
 
-    if (!response.ok) throw new Error('Failed to fetch certificates');
-    
-    const data: CertificatesResponse = await response.json();
+    const data: CertificatesResponse = response.data;
+
     if (data.status !== 'success') throw new Error(data.message);
-    
+
     return data.data;
   } catch (err) {
     console.error('Error fetching certificates:', err);
     return null;
   }
 }
-
 export default async function CertificatesPage() {
   const certificates = await getCertificates();
 

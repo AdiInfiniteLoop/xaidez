@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import {decode} from 'he'
+import axios from 'axios';
 export const metadata: Metadata = {
   title: 'Video Gallery',
   description: 'Explore our collection of curated videos showcasing our finest content.',
@@ -27,21 +28,19 @@ const decodeBase64 = (base64String: string): string => {
 
 
 export default async function VideosPage() {
+
   const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
   let videos: VideoData[] = [];
   let error: string | null = null;
-
+  
   try {
-    const response = await fetch(`${apiUrl}/videos`);
-
-    if (!response.ok) throw new Error('Failed to fetch videos');
-
-    const result: VideosResponse = await response.json();
-
+    const response = await axios.get<VideosResponse>(`${apiUrl}/videos`);
+    const result = response.data;
+  
     if (result.status !== 'success' || !Array.isArray(result.data)) {
       throw new Error(result.message || 'Invalid response format');
     }
-
+  
     videos = result.data;
   } catch (err) {
     console.error('Error fetching videos:', err);

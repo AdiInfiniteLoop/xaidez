@@ -2,14 +2,13 @@
 
 import { useState } from 'react';
 import { Send, Phone, Mail, MapPin, CheckCircle, XCircle } from 'lucide-react';
+import { SITE_INFO } from '@/config'
+import axios from 'axios';
 
-
-const phoneNumber = "+91 12345 65674"
-const email = "support@xaidez.com"
-const address1 = "123 Business Park, Main Street"
-const address2 = " Mumbai,Jammu Kashmir, 400001"
-const bhrs1 = "Monday - Friday: 9:00 AM - 6:00 PM"
-const bhrs2 = "Saturday: 10:00 AM - 2:00 PM"
+const phoneNumber = SITE_INFO.mobile[0]
+const email = SITE_INFO.email[0]
+const address1 = SITE_INFO.address
+const bhrs1 = `Open Daily: ${SITE_INFO.timing[0]}`
 
 export default function ContactUs() {
   const [formData, setFormData] = useState({
@@ -38,55 +37,53 @@ export default function ContactUs() {
   const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+  
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/contact`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-      
-      if (response.ok) {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/contact`,
+        formData // axios automatically handles JSON body
+      );
+
+      console.log(response)
+  
+      if (response.status === 200 || response.status === 201  || response.data.status === 'success') {
         setStatus({
           submitted: true,
           success: true,
-          message: 'Thank you! Your message has been sent successfully.'
+          message: 'Thank you! Your message has been sent successfully.',
         });
-        
+  
         setFormData({
           name: '',
           mobile: '',
           email: '',
-          message: ''
+          message: '',
         });
-        
+  
         setTimeout(() => {
           setStatus({
             submitted: false,
             success: false,
-            message: ''
+            message: '',
           });
         }, 5000);
       } else {
         setStatus({
           submitted: true,
           success: false,
-          message: 'Something went wrong. Please try again later.'
+          message: 'Something went wrong. Please try again later.',
         });
       }
-    } catch {
+    } catch  {
       setStatus({
         submitted: true,
         success: false,
-        message: 'Network error. Please check your connection and try again.'
+        message: 'Network error. Please check your connection and try again.',
       });
     } finally {
       setIsSubmitting(false);
     }
   };
-
   return (
     <section className="w-full py-16">
       <div className="max-w-7xl mx-auto px-4">
@@ -127,7 +124,7 @@ export default function ContactUs() {
                   <MapPin size={20} className="text-xaidez-accent mr-3 mt-1" />
                   <div>
                     <p className="font-medium text-gray-700">Address</p>
-                    <p className="text-gray-600">{address1}<br />{address2}</p>
+                    <p className="text-gray-600">{address1}</p>
                   </div>
                 </div>
               </div>
@@ -135,11 +132,9 @@ export default function ContactUs() {
               <div className="mt-8 pt-6 border-t border-gray-200">
                 <h4 className="font-medium text-gray-800 mb-3">Business Hours</h4>
                 <p className="text-gray-600 mb-1">{bhrs1}</p>
-                <p className="text-gray-600">{bhrs2}</p>
               </div>
             </div>
             
-            {/* Contact form */}
             <div className="md:col-span-2 bg-white rounded-lg shadow-sm p-6 md:p-8 border border-xaidez-dark">
               <h3 className="text-xl font-semibold text-gray-800 mb-6">Send us a message</h3>
               

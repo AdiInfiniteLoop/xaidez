@@ -3,6 +3,7 @@ import CategoriesSection from "@/components/Categories";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import WhyChooseUsSection  from "@/components/WhyChooseUs";
 import { MetricsSection } from "@/components/MetricsSection";
+import axios from "axios";
 
 
 //Async = SSC(Not the graphs one)
@@ -11,14 +12,16 @@ export default async function Homepage() {
   let sliders = [];
   let categories = [];
   let products = [];
-  console.log(process.env.NEXT_PUBLIC_BACKEND_URL)
+
+  // console.log(process.env.NEXT_PUBLIC_BACKEND_URL);
+
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/home`);
-    if (!res.ok) throw new Error("Failed to fetch");
-    const json = await res.json();
-    sliders = json?.data?.sliders || [];
-    categories = json?.data?.categories || [];
-    products = json?.data?.products || [];
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/home`);
+    const data = response?.data?.data;
+
+    sliders = data?.sliders || [];
+    categories = data?.categories || [];
+    products = data?.products || [];
 
   } catch (error) {
     console.error("Homepage data fetch failed:", error);

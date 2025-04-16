@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Image from 'next/image';
 
 interface RawGalleryItem {
@@ -21,16 +22,14 @@ export default async function ImageGalleryPage() {
   let gallery: GalleryItem[] = [];
 
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/photos`);
-
-    if (!response.ok) throw new Error('Failed to fetch');
-
-    const result = await response.json();
-
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/photos`);
+  
+    const result = response.data;
+  
     if (result.status !== 'success' || !Array.isArray(result.data)) {
       throw new Error('Invalid data');
     }
-
+  
     gallery = result.data.map((item: RawGalleryItem) => ({
       ...item,
       decodedTitle: decodeBase64(item.title),
@@ -38,7 +37,7 @@ export default async function ImageGalleryPage() {
   } catch (err) {
     console.error('Gallery fetch error:', err);
   }
-
+  
   if (!gallery.length) {
     return (
       <div className="w-full max-w-7xl mx-auto px-4 py-12 text-center">

@@ -1,5 +1,6 @@
 import ProductsPage from "@/pages/Productspage"
 import { ProductResponse, Category } from "@/types/product"
+import axios from 'axios';
 
 interface PageProps {
   searchParams: Record<string, string>
@@ -11,36 +12,34 @@ interface CategoryResponse {
   data: Category[]
 }
 
+
 async function getData(searchParams: Record<string, string>): Promise<{
-  products: ProductResponse | null
-  categories: CategoryResponse | null
+  products: ProductResponse | null;
+  categories: CategoryResponse | null;
 }> {
-  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL
+  const baseUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
   try {
     const [productsRes, categoriesRes] = await Promise.all([
-      fetch(`${baseUrl}/products?${new URLSearchParams(searchParams)}`, {
-        cache: "no-store",
-      }),
-      fetch(`${baseUrl}/categories`, { cache: "no-store" }),
-    ])
+      axios.get(`${baseUrl}/products`, { params: searchParams }),
+      axios.get(`${baseUrl}/categories`),
+    ]);
 
-    const products: ProductResponse = await productsRes.json()
-    const categories: CategoryResponse = await categoriesRes.json()
+    const products: ProductResponse = productsRes.data;
+    const categories: CategoryResponse = categoriesRes.data;
 
     return {
-      products: productsRes.ok ? products : null,
-      categories: categoriesRes.ok ? categories : null,
-    }
+      products: productsRes.status === 200 ? products : null,
+      categories: categoriesRes.status === 200 ? categories : null,
+    };
   } catch (error) {
-    console.error("Failed to fetch products or categories:", error)
+    console.error("Failed to fetch products or categories:", error);
     return {
       products: null,
       categories: null,
-    }
+    };
   }
 }
-
 export default async function Page({ searchParams }: PageProps) {
   const { products, categories } = await getData(searchParams)
 
