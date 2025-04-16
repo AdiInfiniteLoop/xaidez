@@ -14,7 +14,6 @@ const ProductGrid = ({ products, isLoading, clearFilters }: ProductGridProps) =>
     return <LoadingSkeleton />
   }
 
-  // Ensure products is an array
   const productArray = Array.isArray(products) ? products : []
 
   if (productArray.length === 0) {

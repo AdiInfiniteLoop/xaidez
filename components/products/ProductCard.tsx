@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { Product } from "@/types/product"
 import { RatingStars } from "./RatingStars"
+import Link from "next/link"
 
 interface ProductCardProps {
   product: Product
@@ -18,6 +19,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
         />
       </div>
+   <Link href={`products/${product.slug}`}>
+
       <div className="p-4">
         <h4 className="text-lg font-medium text-gray-900 line-clamp-1">{product.title}</h4>
         <p className="text-sm text-gray-500 mt-1 line-clamp-2">{product.subtitle}</p>
@@ -33,6 +36,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           </button>
         </div>
       </div>
+   </Link>
     </div>
   )
 }
