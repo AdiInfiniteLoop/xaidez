@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, Menu, X, Mail, Info, Camera, Video, Award, Shield, FileText, TruckIcon, RefreshCcw, FileQuestion, ShoppingBasketIcon } from 'lucide-react';
+import {  Menu, X, Mail, Info, Camera, Video, Award, Shield, FileText, TruckIcon, RefreshCcw, FileQuestion, ShoppingBasketIcon } from 'lucide-react';
 import NavItem from './navbar/navbutton';
 import MoreDropdownButton from './navbar/MoreDropdownButton';
 import MobileMenuItem from './navbar/MobileMenuItem';

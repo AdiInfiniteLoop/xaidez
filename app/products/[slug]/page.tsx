@@ -105,7 +105,13 @@ export default async function ProductPage({ params }: { params: { slug: string }
           </div>
   
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 py-8">
-            <ProductImageGallery images={allImages} title={title} />
+            <div>
+              <ProductImageGallery images={allImages} title={title} />
+              
+              <div className="mt-8">
+                <ProductActions />
+              </div>
+            </div>
   
             <div className="space-y-8">
               {product.collection && (
@@ -125,7 +131,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
                     <Star
                       key={star}
                       fill={star <= ratingValue ? "currentColor" : "none"}
-                      stroke={star <= ratingValue ? "none" : "currentColor"}
+                      stroke={star <= ratingValue ? "currentColor" : "none"}
                       className="w-5 h-5"
                     />
                   ))}
@@ -143,14 +149,10 @@ export default async function ProductPage({ params }: { params: { slug: string }
                   {parse(decodedDescription)}
                 </ExpandableText>
               </div>
-  
-              <ProductActions />
             </div>
           </div>
         </div>
       </div>
     </main>
   )
-  
 }
-
