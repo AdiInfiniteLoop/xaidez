@@ -19,7 +19,7 @@ export default function DarkFooter() {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-xaidez-secondary text-gray-300">
+    <footer className="bg-xaidez-secondary text-gray-300 mt-20 ">
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="relative  h-8 -mt-16 mb-8">
           <svg className="absolute bottom-0 w-full" viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg">
