@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Search, Menu, X, Mail, Info, Camera, Video, Award, Shield, FileText, TruckIcon, RefreshCcw, FileQuestion } from 'lucide-react';
+import { Search, Menu, X, Mail, Info, Camera, Video, Award, Shield, FileText, TruckIcon, RefreshCcw, FileQuestion, ShoppingBasketIcon } from 'lucide-react';
 import NavItem from './navbar/navbutton';
 import MoreDropdownButton from './navbar/MoreDropdownButton';
 import MobileMenuItem from './navbar/MobileMenuItem';
@@ -46,6 +46,7 @@ const Navbar = () => {
             <nav className="hidden xl:flex ml-8">
               <ul className="flex items-center space-x-1">
                 <NavItem href='/about' label='About'/>
+                <NavItem href='/products' label='Products'/>
                 <NavItem href='/photos' label='Photos'/>
                 <NavItem href='/videos' label='Videos'/>
                 <MoreDropdownButton />
@@ -99,10 +100,10 @@ const Navbar = () => {
               icon={<Info size={20} className="mr-3" />}
             />
             <MobileMenuItem 
-              href="/contact" 
-              label="Contact" 
+              href="/products" 
+              label="Products" 
               onClick={toggleMobileMenu} 
-              icon={<Mail size={20} className="mr-3" />}
+              icon={<ShoppingBasketIcon size={20} className="mr-3" />}
             />
             <MobileMenuItem 
               href="/photos" 
@@ -110,11 +111,17 @@ const Navbar = () => {
               onClick={toggleMobileMenu} 
               icon={<Camera size={20} className="mr-3" />}
             />
+              <MobileMenuItem 
+                href="/videos" 
+                label="Videos" 
+                onClick={toggleMobileMenu} 
+                icon={<Video size={20} className="mr-3" />}
+              />
             <MobileMenuItem 
-              href="/videos" 
-              label="Videos" 
+              href="/contact" 
+              label="Contact" 
               onClick={toggleMobileMenu} 
-              icon={<Video size={20} className="mr-3" />}
+              icon={<Mail size={20} className="mr-3" />}
             />
             <MobileMenuItem 
               href="/certificates" 
