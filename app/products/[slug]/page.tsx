@@ -106,7 +106,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
             <div>
               <ProductImageGallery images={allImages} title={title} />
               
-              <div className="mt-8">
+              <div className="mt-4">
                 <ProductActions />
               </div>
             </div>

@@ -108,7 +108,7 @@ export default function HeroSection({ slides }: HeroSectionProps) {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
                   priority={index === 0}
                 />
-                <div className="absolute inset-0 bg-black/30" />
+                <div className="absolute inset-0 bg-black/60" />
               </div>
 
               <div className="relative h-full flex items-center">
@@ -122,9 +122,6 @@ export default function HeroSection({ slides }: HeroSectionProps) {
                   >
                     <h3 className="text-lg md:text-xl font-medium mb-2">{slide.title}</h3>
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{slide.subtitle}</h2>
-                    <p className="text-sm md:text-base mb-6 max-w-md">
-                      Dried and grown under the perfect sunshine of Kashmir.
-                    </p>
                     <Link
                       href={slide.action_link || "#"}
                       className="inline-block px-6 py-3 bg-xaidez-secondary hover:bg-xaidez-hoveraccent text-white font-medium rounded-md transition-colors duration-300"
