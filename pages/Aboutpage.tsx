@@ -1,6 +1,6 @@
 import HotButton from "@/components/HotButton1"
 import ScrollAnimation from "@/components/ui/ScrollAnimation"
-import Link from "next/link"
+import { SITE_INFO } from "@/config"
 
 export default function AboutUs() {
   return (
@@ -20,7 +20,7 @@ export default function AboutUs() {
       
       <h1 className="text-4xl md:text-6xl font-bold mb-6 text-xaidez-secondary">
         Welcome to <span className="relative inline-block">
-          Our Company
+          {SITE_INFO.sitename}
           <span className="absolute bottom-0 left-0 w-full h-1 bg-xaidez-primary opacity-20"></span>
         </span>
       </h1>
@@ -30,11 +30,6 @@ export default function AboutUs() {
         We are a forward-thinking company that combines state-of-the-art technology
         with traditional craftsmanship to bring you the best.
       </p>
-      
-      <div className="flex flex-row gap-4 justify-center">
-  <HotButton href="/contact" text="Join Us On Our Journey"/>
-  
-      </div>
     </div>
   </div>
   
@@ -259,7 +254,6 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* Mission Statement Section */}
       <section className="py-20 bg-xaidez-accent">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
@@ -291,12 +285,7 @@ export default function AboutUs() {
                 better.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/products"
-                  className="inline-block bg-xaidez-primary text-xaidez-light px-8 py-3 rounded-md font-medium hover:bg-xaidez-hoveraccent transition-colors"
-                >
-                  Shop Now
-                </Link>
+          <HotButton href="/products" text="Explore Products"/>
               </div>
             </div>
           </ScrollAnimation>

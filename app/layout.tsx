@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Montserrat } from 'next/font/google'
+import { Outfit } from 'next/font/google'
 
 import './globals.css'
 import Navbar from '../components/Navbar'
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: 'Shop Jammu and Kashmir\'s delicacies',
 }
 
-const montserrat = Montserrat({
+const montserrat = Outfit({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   display: 'swap',

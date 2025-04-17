@@ -58,7 +58,7 @@ const WhyChooseUs = () => {
           <div className="lg:col-span-1 flex flex-col h-full">
             <div className="relative flex-grow bg-gray-50 rounded-lg border border-gray-100 shadow-sm p-6">
               <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 lg:left-10 lg:translate-x-0 bg-xaidez-accent text-white px-4 py-2 rounded-full text-sm font-medium">
-                The Xaidez Advantage
+              Xaidez Perks
               </div>
               <div className="h-full flex flex-col justify-between">
                 <div>
@@ -90,9 +90,9 @@ const WhyChooseUs = () => {
             <div className="grid grid-cols-2 gap-2 h-full">
               {reasons.map((reason, index) => (
                 <div key={index} className="bg-white rounded-lg p-6 border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full mb-4 bg-emerald-50 text-xaidez-accent">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full mb-4 bg-red-50 text-xaidez-accent">
                     {React.cloneElement(reason.icon, {
-                      className: "h-6 w-6 text-xaidez-accent"
+                      className: "h-8 w-8 text-xaidez-accent"
                     })}
                   </div>
                   <h3 className="text-xl font-semibold mb-2 text-gray-800">

@@ -20,17 +20,12 @@ export default function ContactSection() {
         <div className="flex flex-col md:flex-row gap-8">
           <div className="bg-white rounded-lg shadow-lg p-8 flex-1">
             <div className="flex items-center mb-6">
-              <div className="bg-xaidez-dark p-2 rounded-md">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold ml-3">Contact Information</h3>
+              <h3 className="text-xl text-xaidez-accent font-bold ml-3">Contact Information</h3>
             </div>
             
             <div className="space-y-4">
               <div className="flex items-center">
-                <div className="bg-blue-100 p-2 rounded-full">
+                <div className="bg-red-100 p-3 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-xaidez-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h18M3 5l9 7 9-7M3 19h18V5H3v14z" />
                 </svg>
@@ -44,7 +39,7 @@ export default function ContactSection() {
               </div>
               
               <div className="flex items-center">
-                <div className="bg-blue-100 p-2 rounded-full">
+                <div className="bg-red-100 p-3 rounded-full">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-xaidez-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                   </svg>
@@ -56,7 +51,7 @@ export default function ContactSection() {
               </div>
               
               <div className="flex items-center">
-                <div className="bg-blue-100 p-2 rounded-full">
+                <div className="bg-red-100 p-3 rounded-full">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-xaidez-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />

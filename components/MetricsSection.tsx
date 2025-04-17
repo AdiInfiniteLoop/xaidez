@@ -9,8 +9,8 @@ export function MetricsSection() {
 
   const metrics = useMemo(() => [
     {
-      finalNumber: 10000,
-      displayNumber: "10,000+",
+      finalNumber: 100,
+      displayNumber: "100+",
       title: "Products",
       icon: <Package className="h-8 w-8" />,
       color: "bg-blue-500",
@@ -119,7 +119,6 @@ export function MetricsSection() {
                 </div>
               </div>
               
-              {/* Counter positioned at the bottom of the circle */}
               <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 bg-white px-4 py-1 rounded-full shadow-md border border-gray-100">
                 <p className="text-xl font-bold text-gray-800">
                   {isVisible ? formatNumber(counts[index]) : "0+"}

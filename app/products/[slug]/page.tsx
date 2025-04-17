@@ -2,10 +2,10 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import parse from 'html-react-parser'
 import ProductImageGallery from "@/components/ProductImage"
-import { Star } from "lucide-react"
 import ProductActions from "@/components/ProductAction"
 import ExpandableText from "@/components/Expandabletext"
 import axios from 'axios';
+import { RatingStars } from "@/components/products/RatingStars"
 
 interface ProductResponse {
   status: string
@@ -82,7 +82,6 @@ export default async function ProductPage({ params }: { params: { slug: string }
   const title = decodeBase64(product.title)
   const subtitle = decodeBase64(product.subtitle)
   const decodedDescription = decodeBase64(product.description)
-  const ratingValue = Number.parseFloat(product.rating)
 
   const allImages = [product.cover, ...product.images.filter((img) => img !== product.cover)]
 
@@ -125,16 +124,9 @@ export default async function ProductPage({ params }: { params: { slug: string }
   
               <div className="flex items-center">
                 <div className="flex text-yellow-400">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <Star
-                      key={star}
-                      fill={star <= ratingValue ? "currentColor" : "none"}
-                      stroke={star <= ratingValue ? "currentColor" : "none"}
-                      className="w-5 h-5"
-                    />
-                  ))}
+                  {<RatingStars rating={product.rating}/>}
                 </div>
-                <span className="ml-2 text-gray-600 font-medium">{product.rating} out of 5</span>
+                <span className="ml-2 text-gray-600 font-medium"></span>
               </div>
   
               <div className="text-sm text-gray-500">

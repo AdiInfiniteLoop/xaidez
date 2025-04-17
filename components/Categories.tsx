@@ -43,9 +43,9 @@ const CategoriesSection: React.FC<Props> = ({ items }) => {
               <Link
                 href={`/products?category=${item.slug}`}
                 key={item.slug}
-                className="m-4 w-64 h-72 flex-shrink-0 rounded-lg bg-white border border-gray-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col items-center p-5 cursor-pointer group"
+                className="m-4 w-64 h-64 flex-shrink-0 rounded-lg bg-white border border-gray-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col items-center p-5 cursor-pointer group"
               >
-                <div className="relative w-40 h-40 rounded-full overflow-hidden mb-4 border-4 border-amber-100 group-hover:border-amber-200 transition-all duration-300">
+                <div className="relative  w-40 h-40 rounded-full overflow-hidden mb-4 border-4 border-amber-100 group-hover:border-amber-200 transition-all duration-300">
                   <Image
                     src={item.image}
                     alt={item.title || 'Category Image'}
@@ -57,7 +57,7 @@ const CategoriesSection: React.FC<Props> = ({ items }) => {
                 <h3 className="text-lg font-semibold text-gray-800 text-center group-hover:text-xaidez-accent transition-colors duration-300">
                   {item.title || 'Category Name'}
                 </h3>
-                <div className="mt-3 flex items-center text-sm text-xaidez-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="mt-1 flex items-center text-sm text-xaidez-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <span>Browse collection</span>
                   <ArrowRight size={16} className="ml-1" />
                 </div>

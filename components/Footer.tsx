@@ -111,16 +111,13 @@ export default function EcommerceFooter() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="w-full bg-white pt-12 pb-6 border-t relative overflow-hidden">
-        {/* Decorative elements */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-xaidez-accent to-transparent"></div>
         <div className="absolute -top-8 left-1/4 w-16 h-16 rounded-full bg-[#f9e6d7] opacity-70"></div>
         <div className="absolute top-1/3 right-0 w-32 h-32 rounded-full bg-[#f9e6d7] opacity-50 transform translate-x-1/2"></div>
 
         <div className="container px-4 md:px-6 mx-auto">
           <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
-            {/* Company Info and Contact */}
             <div className="space-y-8">
               <div className="space-y-4">
                 <div className="flex items-center space-x-2">
@@ -129,10 +126,33 @@ export default function EcommerceFooter() {
                   </div>
                   <h3 className="text-2xl font-bold text-xaidez-accent">{SITE_INFO.sitename}</h3>
                 </div>
-                <p className="text-gray-500">
-                  Your one-stop destination for authentic Kashmir products. Quality saffron, exquisite handicrafts, and exceptional service.
-                </p>
-                <div className="flex space-x-4">
+              </div>
+
+              <div className="space-y-4">
+                <ul className="space-y-3">
+                  <li className="flex items-start space-x-3">
+                    <MapPin size={20} className="text-xaidez-accent flex-shrink-0 mt-1" />
+                    <span className="text-gray-600">{SITE_INFO.address}</span>
+                  </li>
+                  <li className="flex items-center space-x-3">
+                    <Phone size={20} className="text-xaidez-accent" />
+                    <span className="text-gray-600">{SITE_INFO.mobile[0]}</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <Mail size={20} className="mt-1 text-xaidez-accent" />
+                    <div className="flex flex-col text-gray-600 text-base">
+                      <span>{SITE_INFO.email[0]}</span>
+                      <span>{SITE_INFO.email[1]}</span>
+                    </div>
+                  </li>
+
+                  <li className="flex items-center space-x-3">
+                    <Clock size={20} className="text-xaidez-accent" />
+                    <span className="text-gray-600">{SITE_INFO.timing[0]}</span>
+                  </li>
+                </ul>
+              </div> 
+              <div className="flex space-x-4">
                   <Link
                     href={SITE_INFO.social.facebook}
                     target="_blank"
@@ -169,34 +189,7 @@ export default function EcommerceFooter() {
                     <Youtube size={20} className="text-xaidez-accent" />
                     <span className="sr-only">YouTube</span>
                   </Link>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-xaidez-accent">Contact Us</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-start space-x-3">
-                    <MapPin size={20} className="text-xaidez-accent flex-shrink-0 mt-1" />
-                    <span className="text-gray-600">{SITE_INFO.address}</span>
-                  </li>
-                  <li className="flex items-center space-x-3">
-                    <Phone size={20} className="text-xaidez-accent" />
-                    <span className="text-gray-600">{SITE_INFO.mobile[0]}</span>
-                  </li>
-                  <li className="flex items-start space-x-3">
-                    <Mail size={20} className="mt-1 text-xaidez-accent" />
-                    <div className="flex flex-col text-gray-600 text-base">
-                      <span>{SITE_INFO.email[0]}</span>
-                      <span>{SITE_INFO.email[1]}</span>
-                    </div>
-                  </li>
-
-                  <li className="flex items-center space-x-3">
-                    <Clock size={20} className="text-xaidez-accent" />
-                    <span className="text-gray-600">{SITE_INFO.timing[0]}</span>
-                  </li>
-                </ul>
-              </div>              
+                </div>             
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -206,7 +199,7 @@ export default function EcommerceFooter() {
                     <ShoppingBagIcon className="text-xaidez-accent"/>
                     <h3 className="text-xl font-bold text-xaidez-accent">Quick Links</h3>
                   </div>
-                  <ul className="space-y-3">
+                  <ul className="space-y-3 text-lg">
                     {quicklinks.map(
                       (item) => (
                         <li key={item.label}>
@@ -231,9 +224,9 @@ export default function EcommerceFooter() {
                 <div className="space-y-4">
                   <div className="flex items-center space-x-2">
                     <TruckIcon className="text-xaidez-accent"/>
-                    <h3 className="text-xl font-bold text-xaidez-accent">Policies and Information</h3>
+                    <h3 className="text-xl font-bold text-xaidez-accent">Policies</h3>
                   </div>
-                  <ul className="space-y-3">
+                  <ul className="space-y-3 text-lg">
                     {policies.map(
                       (item) => (
                         <li key={item.label}>
@@ -261,38 +254,29 @@ export default function EcommerceFooter() {
               <div className="flex flex-col items-center text-center space-y-2 p-4 rounded-lg hover:bg-[#f9e6d7] transition-colors duration-300">
                 <CreditCard className="text-xaidez-accent"/>
                 <h4 className="font-semibold text-xaidez-accent">Secure Payment</h4>
-                <p className="text-xs text-gray-500">Multiple payment options available</p>
+                <p className="text-base text-gray-500">Multiple payment options available</p>
               </div>
               <div className="flex flex-col items-center text-center space-y-2 p-4 rounded-lg hover:bg-[#f9e6d7] transition-colors duration-300">
                 <GiftIcon className="text-xaidez-accent"/>
                 <h4 className="font-semibold text-xaidez-accent">Authentic Handicrafts</h4>
-                <p className="text-xs text-gray-500">Genuine Kashmir products</p>
+                <p className="text-base text-gray-500">Genuine Kashmir products</p>
               </div>
               <div className="flex flex-col items-center text-center space-y-2 p-4 rounded-lg hover:bg-[#f9e6d7] transition-colors duration-300">
                 <Heart className="text-xaidez-accent"/>
                 <h4 className="font-semibold text-xaidez-accent">Premium Quality</h4>
-                <p className="text-xs text-gray-500">Highest quality Kashmiri products</p>
+                <p className="text-base text-gray-500">Highest quality Kashmiri products</p>
               </div>
             </div>
           </div>
 
           <div className="mt-10 border-t pt-6">
             <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-              <p className="text-xs text-gray-500">
-                © {new Date().getFullYear()} {SITE_INFO.sitename}. All rights reserved. 
-                Developed by <a href={SITE_INFO.developer.link} className="text-xaidez-accent hover:underline">{SITE_INFO.developer.name}</a>
+              <p className="text-base text-gray-500">
+                ©2025 -  All rights reserved. 
               </p>
-              <div className="flex space-x-4 text-xs text-gray-500">
-                <Link href="/privacy-policy" className="hover:text-xaidez-accent transition-colors duration-300">
-                  Privacy Policy
-                </Link>
-                <Link href="/terms-and-conditions" className="hover:text-xaidez-accent transition-colors duration-300">
-                  Terms of Service
-                </Link>
-                <Link href="/disclaimer" className="hover:text-xaidez-accent transition-colors duration-300">
-                  Disclaimer
-                </Link>
-              </div>
+                <div className="text-gray-500">
+                Developed by <a href={SITE_INFO.developer.link} className="text-xaidez-accent hover:underline">{SITE_INFO.developer.name}</a>
+                </div>
             </div>
           </div>
         </div>
