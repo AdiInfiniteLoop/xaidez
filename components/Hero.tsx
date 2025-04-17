@@ -113,17 +113,25 @@ export default function HeroSection({ slides }: HeroSectionProps) {
 
               <div className="relative h-full flex items-center">
                 <div className="container mx-auto px-4 md:px-6">
-                  <div
-                    className={`max-w-lg text-white transition-all duration-800 ease-out ${
-                      activeHeroIndex === index
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-10"
-                    }`}
-                  >
-                    <h3 className="text-lg md:text-xl font-medium mb-2">{slide.title}</h3>
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{slide.subtitle}</h2>
-                  <HotButton href={slide.action_link || "/products"} text={slide.action_title || "Shop Now"}/>
-                  </div>
+                <div
+                className={`max-w-xl text-white transition-all duration-800 ease-out ${
+                  activeHeroIndex === index
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-10"
+                }`}
+              >
+                <h3 className="text-base md:text-lg italic font-semibold tracking-wide text-amber-200 drop-shadow mb-2">
+                  {slide.title}
+                </h3>
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight drop-shadow-md mb-6">
+                  {slide.subtitle}
+                </h2>
+                <HotButton
+                  href={slide.action_link || "/products"}
+                  text={slide.action_title || "Shop Now"}
+                />
+              </div>
+
                 </div>
               </div>
             </div>
