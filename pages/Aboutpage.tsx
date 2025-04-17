@@ -15,7 +15,7 @@ export default function AboutUs() {
         <div className="max-w-4xl mx-auto text-center">
         <div className="inline-block mb-8">
         <div className="h-1 w-16 bg-xaidez-primary mx-auto mb-6"></div>
-        <span className="text-xaidez-primary font-medium tracking-wider uppercase text-sm">EST. 2010</span>
+        <span className="text-xaidez-primary font-medium tracking-wider uppercase text-sm">EST. 1980</span>
       </div>
       
       <h1 className="text-4xl md:text-6xl font-bold mb-6 text-xaidez-secondary">
@@ -106,7 +106,7 @@ export default function AboutUs() {
               <ScrollAnimation animation="slide-right" className="relative mb-16">
                 <div className="flex items-center">
                   <div className="w-1/2 pr-8 text-right">
-                    <h3 className="text-2xl font-bold text-xaidez-primary">2010</h3>
+                    <h3 className="text-2xl font-bold text-xaidez-primary">1980s</h3>
                   </div>
                   <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-xaidez-primary border-4 border-white"></div>
                   <div className="w-1/2 pl-8">
@@ -124,14 +124,14 @@ export default function AboutUs() {
                 <div className="flex items-center">
                   <div className="w-1/2 pr-8 text-right">
                     <p className="text-gray-600">
-                      A significant milestone in our journey came in 2016 when we expanded our operations nationally.
+                      A significant milestone in our journey came in 2000s when we expanded our operations nationally.
                       This expansion allowed us to introduce new product lines, further cementing our position as an
                       innovative force in the industry.
                     </p>
                   </div>
                   <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-xaidez-accent border-4 border-white"></div>
                   <div className="w-1/2 pl-8">
-                    <h3 className="text-2xl font-bold text-xaidez-accent">2016</h3>
+                    <h3 className="text-2xl font-bold text-xaidez-accent">2000s</h3>
                   </div>
                 </div>
               </ScrollAnimation>

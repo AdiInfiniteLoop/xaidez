@@ -16,11 +16,10 @@ export default function WebTeamPage() {
     },
     {
       name: 'Tahir Amaan',
-      position: 'Old School PHP Developer',
+      position: 'Web Developer',
       phone: '+91 919086-509853',
       email: 'idk@example.com',
       linkedin: 'https://www.linkedin.com/in/tahiramaan/',
-      portfolio: 'https://janedoe-portfolio.com/',
       bio: 'Skilled in building responsive and user-friendly interfaces with React and CSS.'
     }
   ];
@@ -45,11 +44,7 @@ export default function WebTeamPage() {
                 <h3 className="text-2xl font-bold text-gray-900">{teamMember.name}</h3>
                 <p className="text-gray-600 mt-1">{teamMember.position}</p>
               </div>
-              <div className="mt-4 md:mt-0">
-                <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-gray-500">
-                  {teamMember.name.split(' ').map(n => n[0]).join('')}
-                </div>
-              </div>
+
             </div>
 
             <div className="mb-6">
@@ -81,11 +76,13 @@ export default function WebTeamPage() {
                       LinkedIn Profile
                     </Link>
                   </li>
-                  <li>
-                    <Link href={teamMember.portfolio} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                      Personal Portfolio
-                    </Link>
-                  </li>
+            {teamMember.portfolio && (
+                                <li>
+                                <Link href={teamMember.portfolio} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                                  Personal Portfolio
+                                </Link>
+                              </li>
+            )}
                 </ul>
               </div>
             </div>
