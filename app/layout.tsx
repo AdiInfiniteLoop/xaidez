@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Outfit } from 'next/font/google'
+import { Open_Sans } from 'next/font/google'
 
 import './globals.css'
 import Navbar from '../components/Navbar'
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: 'Shop Jammu and Kashmir\'s delicacies',
 }
 
-const montserrat = Outfit({
+const montserrat = Open_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   display: 'swap',

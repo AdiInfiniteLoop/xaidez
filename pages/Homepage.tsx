@@ -34,6 +34,7 @@ export default async function Homepage() {
       <HeroSection slides={sliders} />
       <CategoriesSection items={categories} />
       <div className="hidden md:block">
+
         <WhyChooseUsSection />
         <FeaturedProducts products={products} />
       </div>

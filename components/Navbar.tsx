@@ -24,7 +24,7 @@ const Navbar = () => {
   };
 
   return (
-    <header className={`sticky top-0 z-50 w-full bg-gray-900 transition-all duration-300 ${isScrolled ? 'shadow-lg shadow-black/30' : ''}`}>
+    <header className={`sticky top-0 z-50 py-2 w-full bg-gray-900 transition-all duration-300 ${isScrolled ? 'shadow-lg shadow-black/30' : ''}`}>
       <div className="container mx-auto px-4 flex flex-col">
         <div className="flex items-center justify-between py-6">
           <div className="flex items-center">
@@ -38,7 +38,7 @@ const Navbar = () => {
 
             {/* Logo */}
             <Link href="/" className="flex items-center">
-              <span className="text-xl font-bold text-white">
+              <span className="text-2xl font-bold text-white">
                 <span className="px-3 py-1 rounded-md">Xaidez</span>
               </span>
             </Link>

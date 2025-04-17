@@ -10,6 +10,7 @@ import Pagination from "@/components/ui/Pagination"
 import { useProductData } from "@/hooks/use-productdata"
 import { MobileFilterButton } from "@/components/products/MobileFilterButton"
 import { Product, Category } from "@/types/product"
+import Loader from "@/loaders/Loader"
 
 
 
@@ -55,9 +56,9 @@ const ProductsPage = ({ initialProducts, categories, searchParams }: ProductsPag
     setMobileFiltersOpen(!mobileFiltersOpen)
   }, [mobileFiltersOpen])
   if (isLoading) {
-    return <div>
-      Loading...
-    </div>;
+    return (
+      <Loader />
+    )
   }
   return (
     <div className="min-h-screen bg-amber-50">

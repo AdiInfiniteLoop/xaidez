@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link';
-import { Phone, Mail } from 'lucide-react';
+import { Phone } from 'lucide-react';
 
 export default function WebTeamPage() {
   const teamMembers = [
@@ -9,7 +9,6 @@ export default function WebTeamPage() {
       name: 'Aditya Pradhan',
       position: 'Web Developer',
       phone: '+91 81599-88129',
-      email: 'adityapradhanofficial1712@gmail.com',
       linkedin: 'https://www.linkedin.com/in/aditya-pradhan10/',
       portfolio: 'https://personal-portfolio-eta-ebon.vercel.app/',
       bio: 'Experienced in building modern web apps with React, Next.js, and Node.js.'
@@ -18,7 +17,6 @@ export default function WebTeamPage() {
       name: 'Tahir Amaan',
       position: 'Web Developer',
       phone: '+91 919086-509853',
-      email: 'idk@example.com',
       linkedin: 'https://www.linkedin.com/in/tahiramaan/',
       bio: 'Skilled in building responsive and user-friendly interfaces with React and CSS.'
     }
@@ -59,12 +57,7 @@ export default function WebTeamPage() {
                     <Phone size={18} className="text-xaidez-accent" />
                     <span className="text-gray-900">{teamMember.phone}</span>
                   </li>
-                  <li className="flex items-center space-x-3">
-                    <Mail size={18} className="text-xaidez-accent" />
-                    <Link href={`mailto:${teamMember.email}`} className="text-blue-600 hover:underline">
-                      {teamMember.email}
-                    </Link>
-                  </li>
+
                 </ul>
               </div>
 
