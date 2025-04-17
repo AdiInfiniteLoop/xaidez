@@ -4,7 +4,6 @@ import parse from 'html-react-parser'
 import ProductImageGallery from "@/components/ProductImage"
 import ProductActions from "@/components/ProductAction"
 import ExpandableText from "@/components/Expandabletext"
-import axios from 'axios';
 import { RatingStars } from "@/components/products/RatingStars"
 
 interface ProductResponse {
@@ -47,22 +46,36 @@ function decodeBase64(str: string): string {
 }
 
 
-async function getProduct(slug: string): Promise<ProductData> {
-  try {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products/${slug}`);
+export async function getProduct(slug: string): Promise<ProductData> {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products/${slug}`, {
+    next: { revalidate: 600 }, 
+  });
 
-    const data: ProductResponse = response.data;
-
-    if (data.status !== "success") {
-      throw new Error(data.message || "Failed to fetch product data");
-    }
-
-    return data.data;
-  } catch (error) {
-    console.error("Error fetching product:", error);
+  if (!res.ok) {
+    console.error("Failed to fetch product:", res.statusText);
     notFound(); 
   }
+
+  const data: ProductResponse = await res.json();
+
+  if (data.status !== "success") {
+    console.error("Error from API:", data.message);
+    notFound(); 
+  }
+
+  return data.data;
 }
+
+
+
+// const tempCache = new Map<string, ProductData>();
+
+// async function getProductCached(slug: string) {
+//   if (tempCache.has(slug)) return tempCache.get(slug)!;
+//   const product = await getProduct(slug);
+//   tempCache.set(slug, product);
+//   return product;
+// }
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const product = await getProduct(params.slug)
