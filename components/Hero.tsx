@@ -3,7 +3,7 @@
 import type React from "react";
 import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import HotButton from "./HotButton1";
 
 interface Slide {
   title: string;
@@ -122,12 +122,7 @@ export default function HeroSection({ slides }: HeroSectionProps) {
                   >
                     <h3 className="text-lg md:text-xl font-medium mb-2">{slide.title}</h3>
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{slide.subtitle}</h2>
-                    <Link
-                      href={slide.action_link || "#"}
-                      className="inline-block px-6 py-3 bg-xaidez-secondary hover:bg-xaidez-hoveraccent text-white font-medium rounded-md transition-colors duration-300"
-                    >
-                      {slide.action_title || "Shop Now"}
-                    </Link>
+                  <HotButton href={slide.action_link || "/products"} text={slide.action_title || "Shop Now"}/>
                   </div>
                 </div>
               </div>

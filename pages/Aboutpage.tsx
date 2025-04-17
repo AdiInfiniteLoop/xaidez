@@ -1,20 +1,19 @@
+import HotButton from "@/components/HotButton1"
 import ScrollAnimation from "@/components/ui/ScrollAnimation"
 import Link from "next/link"
 
 export default function AboutUs() {
   return (
     <div className="min-h-screen bg-xaidez-light">
-      {/* Hero Section */}
       <section className="relative py-20 md:py-32 overflow-hidden bg-gradient-to-br from-xaidez-light to-gray-100">
-  {/* Decorative elements */}
-  <div className="absolute top-0 left-0 w-full h-full">
-    <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-xaidez-primary opacity-15"></div>
-    <div className="absolute top-1/2 right-1/4 w-20 h-20 rounded-full bg-xaidez-primary opacity-15"></div>
-  </div>
-  
-  <div className="container mx-auto px-4 relative z-10">
-    <div className="max-w-4xl mx-auto text-center">
-      <div className="inline-block mb-8">
+      <div className="absolute top-0 left-0 w-full h-full">
+        <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-xaidez-primary opacity-15"></div>
+        <div className="absolute top-1/2 right-1/4 w-20 h-20 rounded-full bg-xaidez-primary opacity-15"></div>
+      </div>
+          
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-4xl mx-auto text-center">
+        <div className="inline-block mb-8">
         <div className="h-1 w-16 bg-xaidez-primary mx-auto mb-6"></div>
         <span className="text-xaidez-primary font-medium tracking-wider uppercase text-sm">EST. 2010</span>
       </div>
@@ -33,12 +32,8 @@ export default function AboutUs() {
       </p>
       
       <div className="flex flex-row gap-4 justify-center">
-        <Link
-          href="/contact"
-          className="inline-block bg-xaidez-primary text-xaidez-light px-8 py-4 rounded-md font-medium hover:bg-xaidez-hoveraccent transition-colors shadow-lg"
-        >
-          Join us on our journey
-        </Link>
+  <HotButton href="/contact" text="Join Us On Our Journey"/>
+  
       </div>
     </div>
   </div>
@@ -301,12 +296,6 @@ export default function AboutUs() {
                   className="inline-block bg-xaidez-primary text-xaidez-light px-8 py-3 rounded-md font-medium hover:bg-xaidez-hoveraccent transition-colors"
                 >
                   Shop Now
-                </Link>
-                <Link
-                  href="/contact"
-                  className="inline-block border border-xaidez-secondary bg-xaidez-light px-8 py-3 rounded-md font-medium hover:bg-xaidez-secondary hover:text-xaidez-light transition-colors"
-                >
-                  Contact Us
                 </Link>
               </div>
             </div>

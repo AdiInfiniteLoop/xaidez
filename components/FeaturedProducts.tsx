@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import HotButton from './HotButton1';
 
 interface Product {
   slug: string;
@@ -106,11 +107,7 @@ const FeaturedProducts: React.FC<Props> = ({ products }) => {
         </div>
 
         <div className="text-center mt-12">
-          <Link href='/products'>
-          <button className="px-8 py-3 bg-gray-800 text-white font-medium rounded-md hover:bg-xaidez-hoveraccent transition-all duration-300 shadow-md">
-            View All Products
-          </button>
-          </Link>
+        <HotButton text='View All Products' href='/products'/>
         </div>
       </div>
     </section>
