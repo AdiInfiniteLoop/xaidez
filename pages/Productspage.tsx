@@ -11,6 +11,9 @@ import { useProductData } from "@/hooks/use-productdata"
 import { MobileFilterButton } from "@/components/products/MobileFilterButton"
 import { Product, Category } from "@/types/product"
 
+
+
+
 interface ProductsPageProps {
   initialProducts: Product[]
   categories: Category[]
@@ -51,7 +54,11 @@ const ProductsPage = ({ initialProducts, categories, searchParams }: ProductsPag
   const toggleMobileFilters = useCallback(() => {
     setMobileFiltersOpen(!mobileFiltersOpen)
   }, [mobileFiltersOpen])
-
+  if (isLoading) {
+    return <div>
+      Loading...
+    </div>;
+  }
   return (
     <div className="min-h-screen bg-amber-50">
       <div className="container mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">

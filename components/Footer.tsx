@@ -183,12 +183,14 @@ export default function EcommerceFooter() {
                     <Phone size={20} className="text-xaidez-accent" />
                     <span className="text-gray-600">{SITE_INFO.mobile[0]}</span>
                   </li>
-                  <li className="flex items-center space-x-3">
-                    <Mail size={20} className="text-xaidez-accent" />
-                    <span className="text-gray-600">{SITE_INFO.email[0]} |</span>
-                     <br />
-                    <span className="text-gray-600">{SITE_INFO.email[1]}</span>
+                  <li className="flex items-start space-x-3">
+                    <Mail size={20} className="mt-1 text-xaidez-accent" />
+                    <div className="flex flex-col text-gray-600 text-base">
+                      <span>{SITE_INFO.email[0]}</span>
+                      <span>{SITE_INFO.email[1]}</span>
+                    </div>
                   </li>
+
                   <li className="flex items-center space-x-3">
                     <Clock size={20} className="text-xaidez-accent" />
                     <span className="text-gray-600">{SITE_INFO.timing[0]}</span>
