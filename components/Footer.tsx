@@ -157,7 +157,7 @@ export default function EcommerceFooter() {
                     href={SITE_INFO.social.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-gray-100 hover:bg-[#f9e6d7] flex items-center justify-center transition-colors duration-300"
+                    className="w-10 h-10 rounded-full bg-[#f9e6d7] hover:scale-105 flex items-center justify-center transition-colors duration-300"
                   >
                     <Facebook size={20} className="text-xaidez-accent" />
                     <span className="sr-only">Facebook</span>
@@ -166,7 +166,7 @@ export default function EcommerceFooter() {
                     href={SITE_INFO.social.x}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-gray-100 hover:bg-[#f9e6d7] flex items-center justify-center transition-colors duration-300"
+                    className="w-10 h-10 rounded-full bg-[#f9e6d7] hover:scale-105 flex items-center justify-center transition-colors duration-300"
                   >
                     <Twitter size={20} className="text-xaidez-accent" />
                     <span className="sr-only">X (Twitter)</span>
@@ -175,7 +175,7 @@ export default function EcommerceFooter() {
                     href={SITE_INFO.social.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-gray-100 hover:bg-[#f9e6d7] flex items-center justify-center transition-colors duration-300"
+                    className="w-10 h-10 rounded-full bg-[#f9e6d7] hover:scale-105 flex items-center justify-center transition-colors duration-300"
                   >
                     <Instagram size={20} className="text-xaidez-accent" />
                     <span className="sr-only">Instagram</span>
@@ -184,7 +184,7 @@ export default function EcommerceFooter() {
                     href={SITE_INFO.social.youtube}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-gray-100 hover:bg-[#f9e6d7] flex items-center justify-center transition-colors duration-300"
+                    className="w-10 h-10 rounded-full bg-[#f9e6d7] hover:scale-105 flex items-center justify-center transition-colors duration-300"
                   >
                     <Youtube size={20} className="text-xaidez-accent" />
                     <span className="sr-only">YouTube</span>
