@@ -1,4 +1,4 @@
-import ProductsPage from "@/pages/Productspage"
+import ProductsPage from "@/components/products/Productspage"
 import { ProductResponse, Category } from "@/types/product"
 import axios from 'axios';
 

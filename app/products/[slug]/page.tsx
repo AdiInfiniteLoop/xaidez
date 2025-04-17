@@ -4,6 +4,7 @@ import parse from 'html-react-parser'
 import ProductImageGallery from "@/components/ProductImage"
 import ProductActions from "@/components/ProductAction"
 import ExpandableText from "@/components/Expandabletext"
+
 import { RatingStars } from "@/components/products/RatingStars"
 
 interface ProductResponse {
