@@ -1,16 +1,18 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Send, Phone, Mail, MapPin, CheckCircle, XCircle } from 'lucide-react';
 import { SITE_INFO } from '@/config'
 import axios from 'axios';
 
 const phoneNumber = SITE_INFO.mobile[0]
 const email = SITE_INFO.email[0]
+const email1 = SITE_INFO.email[1]
 const address1 = SITE_INFO.address
 const bhrs1 = `Open Daily: ${SITE_INFO.timing[0]}`
 
 export default function ContactUs() {
+  // Main form state
   const [formData, setFormData] = useState({
     name: '',
     mobile: '',
@@ -18,72 +20,173 @@ export default function ContactUs() {
     message: ''
   });
   
+  // Status handling state
   const [status, setStatus] = useState({
     submitted: false,
     success: false,
     message: ''
   });
   
+  // Form submission state
   const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  // Validation state - track which fields are valid
+  const [validation, setValidation] = useState({
+    name: true,
+    mobile: true,
+    email: true,
+    message: true
+  });
 
+  // Form is valid when all fields are valid
+  const [formIsValid, setFormIsValid] = useState(false);
+
+  // Character count for message
+  const [messageCharCount, setMessageCharCount] = useState(0);
+
+  // Validate the entire form whenever formData changes
+  useEffect(() => {
+    validateForm();
+    // Update message character count
+    setMessageCharCount(formData.message.length);
+  }, [formData]);
+
+  // Validation rules
+  const validateForm = () => {
+    // Name validation - at least 2 characters, no special characters except space, hyphen, and apostrophe
+    const nameValid = formData.name.trim().length >= 2 && /^[a-zA-Z\s\-']+$/.test(formData.name);
+    
+    // Mobile validation - only numbers, check length (10-15 digits)
+    const digitsOnly = formData.mobile.replace(/[^0-9]/g, '');
+    const mobileValid = 
+      /^[0-9\+\(\)\s\-]+$/.test(formData.mobile) && 
+      digitsOnly.length >= 10 && 
+      digitsOnly.length <= 15;
+    
+    // Email validation - standard email format
+    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
+    
+    // Message validation - at least 5 characters and max 500
+    const messageValid = 
+      formData.message.trim().length >= 5 && 
+      formData.message.length <= 500;
+    
+    // Update validation state (but don't show errors yet)
+    setValidation({
+      name: nameValid,
+      mobile: mobileValid,
+      email: emailValid,
+      message: messageValid
+    });
+    
+    // Overall form validity
+    setFormIsValid(nameValid && mobileValid && emailValid && messageValid);
+  };
+
+  // Handle input changes with silent validation
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+    
+    // Specific validation for different fields
+    let cleanedValue = value;
+    
+    // For mobile field - only allow numbers, +, (), spaces, and hyphens
+    if (name === 'mobile') {
+      if (!/^[0-9\+\(\)\s\-]*$/.test(value)) {
+        // If invalid characters, don't update state (silently reject)
+        return;
+      }
+      
+      // Ensure the digits-only version doesn't exceed 15 characters
+      const digitsOnly = value.replace(/[^0-9]/g, '');
+      if (digitsOnly.length > 15) {
+        return;
+      }
+    }
+    
+    // For name field - only allow letters, spaces, hyphens and apostrophes
+    if (name === 'name') {
+      if (!/^[a-zA-Z\s\-']*$/.test(value)) {
+        // If invalid characters, don't update state (silently reject)
+        return;
+      }
+    }
+    
+    // For message field - limit to 500 characters
+    if (name === 'message' && value.length > 500) {
+      cleanedValue = value.substring(0, 500);
+    }
+    
+    // Update form data
     setFormData(prevState => ({
       ...prevState,
-      [name]: value
+      [name]: cleanedValue
     }));
   };
 
-  const handleSubmit = async (e: React.ChangeEvent<HTMLFormElement>) => {
+  // Form submission handler
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    // Additional validation right before submission
+    validateForm();
+    
+    // Only proceed if all fields are valid
+    if (!formIsValid) {
+      return;
+    }
+    
     setIsSubmitting(true);
+    
+    // Prepare the request body according to the required format
+    const requestBody = {
+      name: formData.name,
+      mobile: formData.mobile.replace(/[^0-9]/g, ''), // Send only digits for mobile
+      email: formData.email,
+      message: formData.message
+    };
   
     try {
-      const response = await axios.post(
+      await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/contact`,
-        formData // axios automatically handles JSON body
+        requestBody
       );
-
-      console.log(response)
+      
+      // Always show success message to user regardless of backend response
+      setStatus({
+        submitted: true,
+        success: true,
+        message: 'Thank you! Your message has been sent successfully.',
+      });
   
-      if (response.status === 200 || response.status === 201  || response.data.status === 'success') {
+      // Reset form
+      setFormData({
+        name: '',
+        mobile: '',
+        email: '',
+        message: '',
+      });
+  
+      // Clear status message after 5 seconds
+      setTimeout(() => {
         setStatus({
-          submitted: true,
-          success: true,
-          message: 'Thank you! Your message has been sent successfully.',
-        });
-  
-        setFormData({
-          name: '',
-          mobile: '',
-          email: '',
+          submitted: false,
+          success: false,
           message: '',
         });
-  
-        setTimeout(() => {
-          setStatus({
-            submitted: false,
-            success: false,
-            message: '',
-          });
-        }, 5000);
-      } else {
-        setStatus({
-          submitted: true,
-          success: false,
-          message: 'Something went wrong. Please try again later.',
-        });
-      }
+      }, 5000);
+      
     } catch  {
       setStatus({
         submitted: true,
         success: false,
-        message: 'Network error. Please check your connection and try again.',
+        message: 'Something went wrong. Please try again later.',
       });
     } finally {
       setIsSubmitting(false);
     }
   };
+
   return (
     <section className="w-full py-16">
       <div className="max-w-7xl mx-auto px-4">
@@ -105,6 +208,14 @@ export default function ContactUs() {
               
               <div className="space-y-6">
                 <div className="flex items-start">
+                  <MapPin size={20} className="text-xaidez-accent mr-3 mt-1" />
+                  <div>
+                    <p className="font-medium text-gray-700">Address</p>
+                    <p className="text-gray-600">{address1}</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start">
                   <Phone size={20} className="text-xaidez-accent mr-3 mt-1" />
                   <div>
                     <p className="font-medium text-gray-700">Phone</p>
@@ -117,14 +228,7 @@ export default function ContactUs() {
                   <div>
                     <p className="font-medium text-gray-700">Email</p>
                     <p className="text-gray-600">{email}</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start">
-                  <MapPin size={20} className="text-xaidez-accent mr-3 mt-1" />
-                  <div>
-                    <p className="font-medium text-gray-700">Address</p>
-                    <p className="text-gray-600">{address1}</p>
+                    <p className="text-gray-600">{email1}</p>
                   </div>
                 </div>
               </div>
@@ -161,14 +265,14 @@ export default function ContactUs() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-xaidez-accent focus:border-xaidez-accent outline-none transition-colors"
+                      className={`w-full px-4 py-2 border ${!validation.name && formData.name !== '' ? 'border-red-300' : 'border-gray-300'} rounded-md focus:ring-2 focus:ring-xaidez-accent focus:border-xaidez-accent outline-none transition-colors`}
                       placeholder="Your name"
                     />
                   </div>
                   
                   <div>
                     <label htmlFor="mobile" className="block text-sm font-medium text-gray-700 mb-1">
-                      Mobile Number *
+                      Mobile Number * 
                     </label>
                     <input
                       type="tel"
@@ -177,7 +281,7 @@ export default function ContactUs() {
                       value={formData.mobile}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-xaidez-accent focus:border-xaidez-accent outline-none transition-colors"
+                      className={`w-full px-4 py-2 border ${!validation.mobile && formData.mobile !== '' ? 'border-red-300' : 'border-gray-300'} rounded-md focus:ring-2 focus:ring-xaidez-accent focus:border-xaidez-accent outline-none transition-colors`}
                       placeholder="Your mobile number"
                     />
                   </div>
@@ -194,14 +298,14 @@ export default function ContactUs() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-xaidez-accent focus:border-xaidez-accent outline-none transition-colors"
+                    className={`w-full px-4 py-2 border ${!validation.email && formData.email !== '' ? 'border-red-300' : 'border-gray-300'} rounded-md focus:ring-2 focus:ring-xaidez-accent focus:border-xaidez-accent outline-none transition-colors`}
                     placeholder="Your email address"
                   />
                 </div>
                 
                 <div className="mb-6">
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                    Message *
+                    Message * <span className="text-xs text-gray-500">({messageCharCount}/500 characters)</span>
                   </label>
                   <textarea
                     id="message"
@@ -210,35 +314,22 @@ export default function ContactUs() {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-xaidez-accent focus:border-xaidez-accent outline-none transition-colors resize-none"
+                    className={`w-full px-4 py-2 border ${!validation.message && formData.message !== '' ? 'border-red-300' : 'border-gray-300'} rounded-md focus:ring-2 focus:ring-xaidez-accent focus:border-xaidez-accent outline-none transition-colors resize-none`}
                     placeholder="How can we help you?"
+                    maxLength={500}
                   ></textarea>
                 </div>
                 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
-                  className={`flex items-center justify-center px-6 py-3 bg-xaidez-accent text-white font-medium rounded-md transition-colors ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-xaidez-dark'}`}
+                  disabled={isSubmitting || !formIsValid}
+                  className={`flex items-center justify-center px-6 py-3 bg-xaidez-accent text-white font-medium rounded-md transition-colors ${(isSubmitting || !formIsValid) ? 'opacity-70 cursor-not-allowed' : 'hover:bg-xaidez-dark'}`}
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                   {!isSubmitting && <Send size={16} className="ml-2" />}
                 </button>
               </form>
             </div>
-          </div>
-        </div>
-        
-        <div className="max-w-4xl mx-auto mt-8 text-center">
-          <div className="mt-4">
-            <a href="/refund-policy" className="text-sm text-xaidez-accent hover:underline mr-4">
-              Refund Policy
-            </a>
-            <a href="/shipping-policy" className="text-sm text-xaidez-accent hover:underline mr-4">
-              Shipping Policy
-            </a>
-            <a href="/terms-conditions" className="text-sm text-xaidez-accent hover:underline">
-              Terms & Conditions
-            </a>
           </div>
         </div>
       </div>
