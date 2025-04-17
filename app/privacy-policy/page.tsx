@@ -87,15 +87,6 @@ export default function PrivacyPolicy() {
               </div>
             ))}
           </div>
-
-          <div className="mt-8 pt-6 border-t border-gray-200">
-
-            <div className="mt-4">
-              <a href="/disclaimer" className="text-sm text-xaidez-accent hover:underline">
-                Read our Disclaimer
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </section>

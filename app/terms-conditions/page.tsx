@@ -84,17 +84,7 @@ export default function TermsConditions() {
               </div>
             ))}
           </div>
-
-          <div className="mt-8 pt-6 border-t border-gray-200">
-            <div className="mt-4">
-              <a href="/privacy-policy" className="text-sm text-xaidez-accent hover:underline mr-4">
-                Privacy Policy
-              </a>
-              <a href="/disclaimer" className="text-sm text-xaidez-accent hover:underline">
-                Disclaimer
-              </a>
-            </div>
-          </div>
+          
         </div>
       </div>
     </section>
