@@ -26,7 +26,7 @@ const Navbar = () => {
   return (
     <header className={`sticky top-0 z-50 w-full bg-gray-900 transition-all duration-300 ${isScrolled ? 'shadow-lg shadow-black/30' : ''}`}>
       <div className="container mx-auto px-4 flex flex-col">
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-between py-6">
           <div className="flex items-center">
             <button 
               className="xl:hidden text-white mr-3 xl:hover:text-purple-200 transition-colors"
@@ -55,15 +55,18 @@ const Navbar = () => {
           </div>
 
 
+
           <div className="hidden md:flex items-center">
-          <Link 
-            href="/contact" 
-            className="flex items-center px-4 py-2 rounded-full bg-xaidez-dark bg-opacity-20 hover:bg-xaidez-hoveraccent text-white hover:bg-opacity-30 transition-all border border-white/40"
-          >
-            <Mail size={18} className="mr-2" />
-            <span>Contact Us</span>
-          </Link>
-        </div>
+            <Link 
+              href="/contact" 
+              className="contact-click flex items-center px-5 py-2 rounded-full bg-gradient-to-r from-xaidez-accent/90 to-xaidez-error/90 text-white transition-all duration-300 shadow-md border border-purple-400/20"
+            >
+              <Mail size={18} className="mr-2" />
+              <span className="font-medium">Contact Us</span>
+            </Link>
+          </div>
+
+
 
         </div>
 

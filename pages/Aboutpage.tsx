@@ -36,7 +36,7 @@ export default function AboutUs() {
   <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-xaidez-primary to-transparent opacity-30"></div>
 </section>
 
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-amber-50/30">
         <div className="container mx-auto px-4">
           <ScrollAnimation animation="fade-up">
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-2  text-xaidez-secondary">Our Story</h2>
@@ -48,8 +48,8 @@ export default function AboutUs() {
             <ScrollAnimation animation="slide-right" delay={200}>
               <div className="bg-xaidez-light p-8 rounded-lg shadow-md h-full border-t-4 border-xaidez-primary">
                 <h3 className="text-xl font-semibold mb-4 text-xaidez-secondary">Our Beginnings</h3>
-                <p className="text-gray-600">
-                  Founded in 2010, our journey began with a simple vision: to create exceptional products that make a
+                <p className="text-lg text-gray-600">
+                  Founded in 1980, our journey began with a simple vision: to create exceptional products that make a
                   difference in the lives of our customers. What started as a small operation in a modest workspace has
                   grown into a thriving business, driven by our commitment to quality and customer satisfaction. Our
                   founders believed in the power of hard work, integrity, and a customer-first mindset. We started by
@@ -62,7 +62,7 @@ export default function AboutUs() {
             <ScrollAnimation animation="fade-up" delay={400}>
               <div className="bg-xaidez-light p-8 rounded-lg shadow-md h-full border-t-4 border-xaidez-accent">
                 <h3 className="text-xl font-semibold mb-4 text-xaidez-secondary">Our Philosophy</h3>
-                <p className="text-gray-600">
+                <p className="text-lg text-gray-600">
                   At the heart of everything we do is a philosophy centered around passion, innovation, and attention to
                   detail. We believe in pushing boundaries and embracing new technologies, but we also remain grounded
                   in the values that got us here. Every decision we make is guided by our commitment to sustainability,
@@ -75,7 +75,7 @@ export default function AboutUs() {
             <ScrollAnimation animation="slide-left" delay={600}>
               <div className="bg-xaidez-light p-8 rounded-lg shadow-md h-full border-t-4 border-xaidez-accent">
                 <h3 className="text-xl font-semibold mb-4 text-xaidez-secondary">Our Promise</h3>
-                <p className="text-gray-600">
+                <p className=" text-lg text-gray-600">
                   To our customers, we promise transparency, integrity, and dedication in everything we do. We believe
                   that products should not only serve a function but also embody the values we stand for. When you
                   choose us, you&apos;re not just getting a product – you&apos;re becoming part of our larger story. A story that
@@ -88,7 +88,6 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* Journey Timeline Section */}
       <section className="py-20 bg-amber-50/30">
         <div className="container mx-auto px-4">
           <ScrollAnimation animation="fade-up">
@@ -99,10 +98,8 @@ export default function AboutUs() {
 
           <div className="max-w-4xl mx-auto">
             <div className="relative">
-              {/* Timeline line */}
               <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-200"></div>
 
-              {/* 2010 */}
               <ScrollAnimation animation="slide-right" className="relative mb-16">
                 <div className="flex items-center">
                   <div className="w-1/2 pr-8 text-right">
@@ -110,7 +107,7 @@ export default function AboutUs() {
                   </div>
                   <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-xaidez-primary border-4 border-white"></div>
                   <div className="w-1/2 pl-8">
-                    <p className="text-gray-600">
+                    <p className="text-lg text-gray-600">
                       Our founding year marked the beginning of our commitment to quality and customer satisfaction. We
                       started with a small, passionate team, operating out of a modest workspace. We focused on
                       perfecting our craft and providing customers with products that were built to last.
@@ -119,11 +116,10 @@ export default function AboutUs() {
                 </div>
               </ScrollAnimation>
 
-              {/* 2016 */}
               <ScrollAnimation animation="slide-left" className="relative mb-16">
                 <div className="flex items-center">
                   <div className="w-1/2 pr-8 text-right">
-                    <p className="text-gray-600">
+                    <p className=" text-lg text-gray-600">
                       A significant milestone in our journey came in 2000s when we expanded our operations nationally.
                       This expansion allowed us to introduce new product lines, further cementing our position as an
                       innovative force in the industry.
@@ -144,7 +140,7 @@ export default function AboutUs() {
                   </div>
                   <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-xaidez-secondary border-4 border-white"></div>
                   <div className="w-1/2 pl-8">
-                    <p className="text-gray-600">
+                    <p className=" text-lg text-gray-600">
                       Today, we are proud to be recognized as an industry leader. We&apos;ve evolved from a small, passionate
                       startup into a global player, continuing to innovate while remaining true to our core values. We
                       are committed to sustainability, customer satisfaction, and maintaining the highest standards of
@@ -158,7 +154,6 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* Our Values Section */}
       <section className="py-20 bg-amber-50/30">
         <div className="container mx-auto px-4">
           <ScrollAnimation animation="fade-up">
@@ -187,7 +182,7 @@ export default function AboutUs() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold mb-4 text-xaidez-secondary">Trust</h3>
-                <p className="text-gray-600 flex-grow">
+                <p className="text-lg text-gray-600 flex-grow">
                   At the heart of our company lies trust. We believe that trust is earned, and we work hard every day to
                   build lasting relationships with our customers, employees, and partners. Our transparency, integrity,
                   and commitment to delivering on our promises are what make us a company people can rely on.
@@ -214,7 +209,7 @@ export default function AboutUs() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold mb-4 text-xaidez-secondary">Passion</h3>
-                <p className="text-gray-600 flex-grow">
+                <p className="text-lg text-gray-600 flex-grow">
                   Our passion drives everything we do. From the first spark of an idea to the final product, passion
                   fuels our creativity, commitment to quality, and the desire to continuously improve. Whether it&apos;s
                   crafting a new product or providing exceptional customer service, our team&apos;s passion ensures that we
@@ -242,7 +237,7 @@ export default function AboutUs() {
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold mb-4 text-xaidez-secondary">Sustainability</h3>
-                <p className="text-gray-600 flex-grow">
+                <p className="text-lg text-gray-600 flex-grow">
                   Sustainability isn&apos;t just a buzzword for us; it&apos;s a core value that we actively prioritize. We are
                   committed to reducing our environmental impact through responsible sourcing, sustainable production
                   practices, and a focus on creating long-lasting products. We believe that businesses have a
@@ -260,7 +255,7 @@ export default function AboutUs() {
             <ScrollAnimation animation="fade-up">
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-xaidez-light">Our Mission</h2>
               
-              <p className="text-lg text-xaidez-light mb-8">
+              <p className="text-xl text-xaidez-light mb-8">
                 Our mission is simple – to create products that enhance lives while maintaining the highest standards of
                 quality and ethics. We are committed to being a catalyst for positive change in our industry by setting
                 new benchmarks for excellence, sustainability, and innovation. We envision a future where our products
