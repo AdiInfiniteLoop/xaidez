@@ -41,7 +41,6 @@ function decodeBase64(str: string): string {
 
 export async function getProduct(slug: string): Promise<ProductData> {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products/${slug}`, {
-    next: { revalidate: 600 },
      cache: 'no-store' 
   });
 

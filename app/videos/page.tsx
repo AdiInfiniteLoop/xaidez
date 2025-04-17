@@ -95,17 +95,14 @@ export default async function VideosPage() {
                 className="bg-white rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group"
               >
                 <div className="relative w-full aspect-video overflow-hidden">
-                  <iframe
-                    src={video.source}
-                    title={decodedTitle}
-                    className="w-full h-full"
-                    allowFullScreen
-                  />
-                  <div className="hidden lg:flex absolute inset-0 items-end bg-black bg-opacity-0 group-hover:bg-opacity-30 transition duration-300">
-                    <p className="text-white text-base p-4 w-full line-clamp-2 group-hover:opacity-100 opacity-0 transition-opacity duration-300">
-                      {decodedTitle}
-                    </p>
-                  </div>
+                <iframe
+                src={video.source}
+                title={decodedTitle}
+                className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                loading="lazy"
+              />
                 </div>
 
                 <div className="p-4">

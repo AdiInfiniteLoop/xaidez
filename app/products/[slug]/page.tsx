@@ -1,5 +1,6 @@
+export const dynamic = 'force-dynamic';
+
 import Link from "next/link"
-import { notFound } from "next/navigation"
 import parse from 'html-react-parser'
 import ProductImageGallery from "@/components/ProductImage"
 import ProductActions from "@/components/ProductAction"
@@ -7,35 +8,10 @@ import ExpandableText from "@/components/Expandabletext"
 
 import { RatingStars } from "@/components/products/RatingStars"
 
-interface ProductResponse {
-  status: string
-  message: string
-  data: ProductData
-}
+import { getProduct } from "@/lib/getProduct"
 
-interface ProductData {
-  product_id: string
-  slug: string
-  title: string 
-  subtitle: string 
-  sku: string
-  rating: string
-  description: string 
-  cover: string
-  images: string[]
-  category: Category
-  collection: Collection
-}
 
-interface Category {
-  title: string
-  slug: string
-}
 
-interface Collection {
-  title: string
-  slug: string
-}
 
 function decodeBase64(str: string): string {
   try {
@@ -47,36 +23,7 @@ function decodeBase64(str: string): string {
 }
 
 
-export async function getProduct(slug: string): Promise<ProductData> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products/${slug}`, {
-    next: { revalidate: 600 }, 
-  });
 
-  if (!res.ok) {
-    console.error("Failed to fetch product:", res.statusText);
-    notFound(); 
-  }
-
-  const data: ProductResponse = await res.json();
-
-  if (data.status !== "success") {
-    console.error("Error from API:", data.message);
-    notFound(); 
-  }
-
-  return data.data;
-}
-
-
-
-// const tempCache = new Map<string, ProductData>();
-
-// async function getProductCached(slug: string) {
-//   if (tempCache.has(slug)) return tempCache.get(slug)!;
-//   const product = await getProduct(slug);
-//   tempCache.set(slug, product);
-//   return product;
-// }
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const product = await getProduct(params.slug)
