@@ -60,7 +60,6 @@ export const useProductData = ({ initialProducts, categories, searchParams, rout
           query: searchQuery,
         },
       })
-      console.log(data)
       if (data?.data?.products) {
         setProducts(data.data.products)
         setTotalPages(data.data.totalPages)
