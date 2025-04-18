@@ -1,5 +1,9 @@
 import Link from 'next/link';
 import { Phone } from 'lucide-react';
+import { Metadata } from 'next';
+import { routeMetadata } from '@/lib/metadata';
+
+export const metadata: Metadata = routeMetadata["/webteam"]
 
 export default function WebTeamPage() {
   const teamMembers = [
@@ -9,14 +13,14 @@ export default function WebTeamPage() {
       phone: '+91 81599-88129',
       linkedin: 'https://www.linkedin.com/in/aditya-pradhan10/',
       portfolio: 'https://personal-portfolio-eta-ebon.vercel.app/',
-      bio: 'Experienced in building modern web apps with React, Next.js, and Node.js.'
+      bio: 'Experienced in building modern web apps with Next.js, and Node.js.'
     },
     {
       name: 'Tahir Amaan',
       position: 'Web Developer',
       phone: '+91 919086-509853',
       linkedin: 'https://www.linkedin.com/in/tahiramaan/',
-      bio: 'Skilled in building responsive and user-friendly interfaces with React and CSS.'
+      bio: 'Skilled in building responsive and user-friendly interfaces with React and CSS with strong backend knowledge.'
     }
   ];
 

@@ -45,4 +45,9 @@ export const routeMetadata = {
     title: `Contact Us | ${SITE_INFO.sitename}`,
     description: `Reach out to ${SITE_INFO.sitename} via phone, email, or visit us in Kashmir. We’re here to answer your questions and help with orders.`,
   },
+  "/webteam": {
+  title: `Web Team | ${SITE_INFO.sitename}`,
+  description: `Meet the brilliant minds behind ${SITE_INFO.sitename}'s online presence. Learn more about our developers, designers, and contributors.`,
+},
+
 }

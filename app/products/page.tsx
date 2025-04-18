@@ -1,6 +1,7 @@
 export const dynamic = 'force-dynamic';
 
 import ProductsPage from "@/components/products/Productspage"
+import { routeMetadata } from "@/lib/metadata";
 import { ProductResponse, Category } from "@/types/product"
 import axios from 'axios';
 
@@ -12,6 +13,9 @@ interface CategoryResponse {
   status: string
   message: string
   data: Category[]
+}
+export async function generateMetadata() {
+  return routeMetadata["/products"]
 }
 
 
