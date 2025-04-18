@@ -275,7 +275,7 @@ export default function EcommerceFooter() {
                 ©2025 -  All rights reserved. 
               </p>
                 <div className="text-gray-500">
-                Developed by <a href={SITE_INFO.developer.link} className="text-xaidez-accent hover:underline">{SITE_INFO.developer.name}</a>
+                Developed by <Link href={SITE_INFO.developer.link} className="text-xaidez-accent hover:underline">{SITE_INFO.developer.name}</Link>
                 </div>
             </div>
           </div>

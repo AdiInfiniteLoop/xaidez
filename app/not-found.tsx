@@ -32,7 +32,7 @@ export default function NotFound() {
 
           <div className="mt-8 pt-6 border-t border-gray-200 text-center">
             <p className="text-sm text-gray-600">
-              Need help? <a href="/contact" className="text-xaidez-accent hover:underline">Contact Support</a>
+              Need help? <Link href="/contact" className="text-xaidez-accent hover:underline">Contact Support</Link>
             </p>
           </div>
         </div>

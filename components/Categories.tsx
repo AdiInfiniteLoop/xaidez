@@ -15,16 +15,11 @@ interface Props {
 }
 
 const CategoriesSection: React.FC<Props> = ({ items }) => {
-  if (items.length === 0) {
-    return (
-      <div className="py-12 px-4 max-w-7xl mx-auto text-center text-gray-600">
-        <p>No categories available at the moment. Please check back later!</p>
-      </div>
-    );
-  }
+  if (items.length > 0) 
+  {
 
-  return (
-    <section className="w-full bg-amber-50 py-12 lg:py-20">
+    return (
+      <section className="w-full bg-amber-50 py-12 lg:py-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-14">
           <p className="text-xs font-medium uppercase tracking-wider text-gray-500 mb-2">EXPLORE</p>
@@ -41,9 +36,9 @@ const CategoriesSection: React.FC<Props> = ({ items }) => {
           <Marquee pauseOnHover speed={70} gradient  gradientWidth={60}>
             {items.map((item) => (
               <Link
-                href={`/products?category=${item.slug}`}
-                key={item.slug}
-                className="m-4 w-64 h-64 flex-shrink-0 rounded-lg bg-white border border-gray-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col items-center p-5 cursor-pointer group"
+              href={`/products?category=${item.slug}`}
+              key={item.slug}
+              className="m-4 w-64 h-64 flex-shrink-0 rounded-lg bg-white border border-gray-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col items-center p-5 cursor-pointer group"
               >
                 <div className="relative  w-40 h-40 rounded-full overflow-hidden mb-4 border-4 border-amber-100 group-hover:border-amber-200 transition-all duration-300">
                   <Image
@@ -52,7 +47,7 @@ const CategoriesSection: React.FC<Props> = ({ items }) => {
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                     sizes="(max-width: 768px) 100vw, 200px"
-                  />
+                    />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-800 text-center group-hover:text-xaidez-accent transition-colors duration-300">
                   {item.title || 'Category Name'}
@@ -69,6 +64,7 @@ const CategoriesSection: React.FC<Props> = ({ items }) => {
       </div>
     </section>
   );
+}
 };
 
 export default CategoriesSection;

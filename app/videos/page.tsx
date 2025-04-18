@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import {decode} from 'he'
 import axios from 'axios';
 import { routeMetadata } from '@/lib/metadata';
+import Link from 'next/link';
 
 
 export const metadata: Metadata = routeMetadata["/videos"]
@@ -51,12 +52,12 @@ export default async function VideosPage() {
     return (
       <div className="w-full max-w-7xl mx-auto px-4 py-12 text-center">
         <p className="text-red-600 font-medium mb-4">{error}</p>
-        <a
-          href=""
+        <Link
+          href="/"
           className="inline-block px-6 py-2 bg-gray-800 text-white font-medium rounded-md hover:bg-gray-700 transition-all duration-300 shadow-md"
         >
           Retry
-        </a>
+        </Link>
       </div>
     );
   }

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { Metadata } from 'next';
 import axios from 'axios';
 import { routeMetadata } from '@/lib/metadata';
+import Link from 'next/link';
 
 export const metadata: Metadata = routeMetadata["/certificates"]
 interface Certificate {
@@ -46,12 +47,12 @@ export default async function CertificatesPage() {
     return (
       <div className="w-full max-w-7xl mx-auto px-4 py-12 text-center">
         <p className="text-red-600 font-medium mb-4">Error loading certificates</p>
-        <a
+        <Link
           href=""
           className="px-6 py-2 bg-gray-800 text-white font-medium rounded-md hover:bg-gray-700 transition-all duration-300 shadow-md"
         >
           Retry
-        </a>
+        </Link>
       </div>
     );
   }
