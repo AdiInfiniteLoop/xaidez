@@ -1,4 +1,6 @@
+import { routeMetadata } from '@/lib/metadata';
 import axios from 'axios';
+import { Metadata } from 'next';
 import Image from 'next/image';
 
 interface RawGalleryItem {
@@ -9,6 +11,9 @@ interface RawGalleryItem {
 interface GalleryItem extends RawGalleryItem {
   decodedTitle: string;
 }
+
+
+export const metadata : Metadata = routeMetadata["/photos"]
 
 const decodeBase64 = (base64String: string): string => {
   try {

@@ -1,12 +1,9 @@
 import Image from 'next/image';
 import { Metadata } from 'next';
 import axios from 'axios';
+import { routeMetadata } from '@/lib/metadata';
 
-export const metadata: Metadata = {
-  title: 'Our Certificates',
-  description: 'Browse through our collection of professional certifications and achievements.',
-};
-
+export const metadata: Metadata = routeMetadata["/certificates"]
 interface Certificate {
   title: string;
   cover: string;

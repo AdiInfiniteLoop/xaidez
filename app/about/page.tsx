@@ -1,6 +1,10 @@
 import HotButton from "@/components/HotButton1"
 import ScrollAnimation from "@/components/ui/ScrollAnimation"
 import { SITE_INFO } from "@/config"
+import { routeMetadata } from "@/lib/metadata"
+
+
+export const metadata = routeMetadata["/about"]
 
 export default function AboutUs() {
   return (

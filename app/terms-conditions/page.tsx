@@ -1,14 +1,11 @@
-'use client'
+import Accordion from "@/components/Accordion";
+import { routeMetadata } from "@/lib/metadata";
+import { Metadata } from "next";
 
-import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+export const metadata: Metadata = routeMetadata["/terms-and-conditions"]
 
 export default function TermsConditions() {
-    const [openSection, setOpenSection] = useState<number | null>(null);
 
-    const toggleSection = (index: number) => {
-      setOpenSection(openSection === index ? null : index);
-    };
   
   const policyItems = [
     {
@@ -60,30 +57,7 @@ export default function TermsConditions() {
             Welcome to our website. By accessing or using our website, you agree to be bound by the following Terms & Conditions. 
             Please read them carefully before continuing to use our site.
           </p>
-
-          <div className="space-y-4">
-            {policyItems.map((item, index) => (
-              <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
-                <button 
-                  className="flex justify-between items-center w-full p-4 text-left bg-gray-50 hover:bg-gray-100 transition-colors duration-200"
-                  onClick={() => toggleSection(index)}
-                >
-                  <span className="font-medium text-gray-800">{item.title}</span>
-                  <ChevronDown 
-                    size={20} 
-                    className={`text-gray-500 transition-transform duration-300 ${openSection === index ? 'transform rotate-180' : ''}`} 
-                  />
-                </button>
-                <div 
-                  className={`overflow-hidden transition-all duration-300 ${
-                    openSection === index ? 'max-h-40 py-4 px-4' : 'max-h-0'
-                  }`}
-                >
-                  <p className="text-gray-700">{item.content}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <Accordion items={policyItems}/>
           
         </div>
       </div>

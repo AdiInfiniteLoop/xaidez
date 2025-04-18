@@ -12,7 +12,6 @@ const address1 = SITE_INFO.address
 const bhrs1 = `Open Daily: ${SITE_INFO.timing[0]}`
 
 export default function ContactUs() {
-  // Main form state
   const [formData, setFormData] = useState({
     name: '',
     mobile: '',
@@ -20,17 +19,14 @@ export default function ContactUs() {
     message: ''
   });
   
-  // Status handling state
   const [status, setStatus] = useState({
     submitted: false,
     success: false,
     message: ''
   });
   
-  // Form submission state
   const [isSubmitting, setIsSubmitting] = useState(false);
   
-  // Validation state - track which fields are valid
   const [validation, setValidation] = useState({
     name: true,
     mobile: true,

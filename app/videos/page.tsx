@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 import {decode} from 'he'
 import axios from 'axios';
-export const metadata: Metadata = {
-  title: 'Video Gallery',
-  description: 'Explore our collection of curated videos showcasing our finest content.',
-};
+import { routeMetadata } from '@/lib/metadata';
+
+
+export const metadata: Metadata = routeMetadata["/videos"]
 
 interface VideoData {
   title: string;
