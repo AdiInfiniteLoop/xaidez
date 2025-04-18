@@ -1,6 +1,10 @@
 import { SITE_INFO } from "@/config"
 
 export const routeMetadata = {
+"/": {
+  title: `Home | ${SITE_INFO.sitename}`,
+  description: `Welcome to ${SITE_INFO.sitename} — your gateway to the heart of Kashmir. Discover authentic saffron, cultural heritage, breathtaking landscapes, and the stories that define our roots.`,
+},
   "/about": {
     title: `About Us | ${SITE_INFO.sitename}`,
     description: `Learn more about ${SITE_INFO.sitename}, our mission, values, and the passionate team behind our journey.`,

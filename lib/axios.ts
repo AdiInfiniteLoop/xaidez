@@ -8,7 +8,6 @@ axiosInstance.interceptors.request.use((config) => {
   const token = process.env.NEXT_PUBLIC_TOKEN
   if (token) {
     config.headers.Authorization = `${token}`
-    console.log("🔐 Token set:", config.headers.Authorization)
   } else {
     console.warn("⚠️ No token found in env")
   }

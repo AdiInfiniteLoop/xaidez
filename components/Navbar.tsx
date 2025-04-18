@@ -1,7 +1,8 @@
 'use client'
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import {  Menu, X, Mail, Info, Camera, Video, Award, Shield, FileText, TruckIcon, RefreshCcw, FileQuestion, ShoppingBasketIcon } from 'lucide-react';
+import Image from 'next/image'
+import {  Menu, X, Mail, Info, Camera, Video, Award, Shield, FileText, TruckIcon, RefreshCcw, FileQuestion, ShoppingBasketIcon, HomeIcon } from 'lucide-react';
 import NavItem from './navbar/navbutton';
 import MoreDropdownButton from './navbar/MoreDropdownButton';
 import MobileMenuItem from './navbar/MobileMenuItem';
@@ -36,15 +37,13 @@ const Navbar = () => {
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
 
-            {/* Logo */}
             <Link href="/" className="flex items-center">
-              <span className="text-2xl font-bold text-white">
-                <span className="px-3 py-1 rounded-md">Xaidez</span>
-              </span>
+              <Image src='/logo.webp' alt='Xaidez' height={69} width={69} className="object-contain" priority/>
             </Link>
 
             <nav className="hidden xl:flex ml-8">
-              <ul className="flex items-center space-x-1">
+                <ul className="flex items-center space-x-1">
+                <NavItem href='/' label='Home'/>
                 <NavItem href='/about' label='About'/>
                 <NavItem href='/products' label='Products'/>
                 <NavItem href='/photos' label='Photos'/>
@@ -96,6 +95,12 @@ const Navbar = () => {
         
         <nav className="p-4">
           <ul className="space-y-1">
+          <MobileMenuItem 
+              href="/" 
+              label="Home" 
+              onClick={toggleMobileMenu} 
+              icon={<HomeIcon size={20} className="mr-3" />}
+            />
             <MobileMenuItem 
               href="/about" 
               label="About" 

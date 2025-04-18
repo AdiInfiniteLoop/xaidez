@@ -1,4 +1,6 @@
 import Link from "next/link"
+import Image from "next/image"
+
 import {
   ArrowRight,
   Facebook,
@@ -121,9 +123,11 @@ export default function EcommerceFooter() {
             <div className="space-y-8">
               <div className="space-y-4">
                 <div className="flex items-center space-x-2">
-                  <div className="w-10 h-10 rounded-full bg-xaidez-accent flex items-center justify-center">
-                    <ShoppingBag size={20} className="text-white" />
-                  </div>
+
+                  <Link href="/" className="flex items-center">
+                    <Image src='/logo.webp' alt='Xaidez' height={60} width={60}/>
+                  </Link>
+
                   <h3 className="text-2xl font-bold text-xaidez-accent">{SITE_INFO.sitename}</h3>
                 </div>
               </div>
