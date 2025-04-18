@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Send, CheckCircle, XCircle } from 'lucide-react';
-import axios from 'axios';
+import axiosInstance from '@/lib/axios';
 
 interface FormProps {
   initialFormData?: {
@@ -145,7 +145,7 @@ export default function ContactForm({ initialFormData }: FormProps) {
     };
   
     try {
-      await axios.post(
+      await axiosInstance.post(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/contact`,
         requestBody
       );

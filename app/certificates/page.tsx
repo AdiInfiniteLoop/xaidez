@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import { Metadata } from 'next';
-import axios from 'axios';
 import { routeMetadata } from '@/lib/metadata';
 import Link from 'next/link';
+import axiosInstance from '@/lib/axios';
 
 export const metadata: Metadata = routeMetadata["/certificates"]
 interface Certificate {
@@ -28,7 +28,7 @@ const decodeTitle = (title: string) => {
 async function getCertificates(): Promise<Certificate[] | null> {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
-    const response = await axios.get(`${apiUrl}/certificates`);
+    const response = await axiosInstance.get(`${apiUrl}/certificates`);
 
     const data: CertificatesResponse = response.data;
 

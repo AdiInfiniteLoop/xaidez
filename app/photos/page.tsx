@@ -1,5 +1,5 @@
+import axiosInstance from '@/lib/axios';
 import { routeMetadata } from '@/lib/metadata';
-import axios from 'axios';
 import { Metadata } from 'next';
 import Image from 'next/image';
 
@@ -27,7 +27,7 @@ export default async function ImageGalleryPage() {
   let gallery: GalleryItem[] = [];
 
   try {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/photos`);
+    const response = await axiosInstance.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/photos`);
   
     const result = response.data;
   

@@ -39,7 +39,7 @@ export default function ContactPage() {
     
     <div className="md:col-span-2 flex flex-col bg-white rounded-lg shadow-sm p-6 md:p-8 border border-xaidez-dark">
       <h3 className="text-xl font-semibold text-gray-800 mb-6">Send us a message</h3>
-      <ContactForm/> {/* This will make the form expand to fill available space */}
+      <ContactForm/> 
     </div>
   </div>
 </div>

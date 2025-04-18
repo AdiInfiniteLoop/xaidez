@@ -41,9 +41,12 @@ function decodeBase64(str: string): string {
 
 export async function getProduct(slug: string): Promise<ProductData> {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products/${slug}`, {
-     cache: 'no-store' 
+    cache: 'no-store',
+    headers: {
+      'Authorization': `${process.env.TOKEN}`,
+    },
   });
-
+  
   if (!res.ok) {
     console.error("Failed to fetch product:", res.statusText);
     notFound();

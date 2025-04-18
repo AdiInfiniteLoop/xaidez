@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react"
-import axios from "axios"
 import { Product, Category, FilterParams, ProductResponse } from "@/types/product"
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime"
+import axiosInstance from "@/lib/axios"
 
 interface UseProductDataProps {
   initialProducts: Product[]
@@ -51,7 +51,7 @@ export const useProductData = ({ initialProducts, categories, searchParams, rout
   const fetchProducts = useCallback(async (): Promise<void> => {
     setIsLoading(true)
     try {
-      const { data } = await axios.get<ProductResponse>(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products`, {
+      const { data } = await axiosInstance.get<ProductResponse>(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products`, {
         params: {
           page,
           limit: 12,

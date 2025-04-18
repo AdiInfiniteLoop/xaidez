@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import {decode} from 'he'
-import axios from 'axios';
 import { routeMetadata } from '@/lib/metadata';
 import Link from 'next/link';
+import axiosInstance from '@/lib/axios';
 
 
 export const metadata: Metadata = routeMetadata["/videos"]
@@ -35,7 +35,7 @@ export default async function VideosPage() {
   let error: string | null = null;
   
   try {
-    const response = await axios.get<VideosResponse>(`${apiUrl}/videos`);
+    const response = await axiosInstance.get<VideosResponse>(`${apiUrl}/videos`);
     const result = response.data;
   
     if (result.status !== 'success' || !Array.isArray(result.data)) {

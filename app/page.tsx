@@ -6,6 +6,7 @@ import { MetricsSection } from "@/components/MetricsSection";
 import axios from "axios";
 import MapSection from "@/components/Map";
 import TestimonialsSection from "@/components/Testimonials";
+import axiosInstance from "@/lib/axios";
 
 
 //Async = SSC(Not the graphs one)
@@ -18,7 +19,7 @@ export default async function Homepage() {
   // console.log(process.env.NEXT_PUBLIC_BACKEND_URL);
 
   try {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/home`);
+    const response = await axiosInstance.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/home`);
     const data = response?.data?.data;
 
     sliders = data?.sliders || [];

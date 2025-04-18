@@ -1,9 +1,9 @@
 export const dynamic = 'force-dynamic';
 
 import ProductsPage from "@/components/products/Productspage"
+import axiosInstance from "@/lib/axios";
 import { routeMetadata } from "@/lib/metadata";
 import { ProductResponse, Category } from "@/types/product"
-import axios from 'axios';
 
 interface PageProps {
   searchParams: Record<string, string>
@@ -27,8 +27,8 @@ async function getData(searchParams: Record<string, string>): Promise<{
 
   try {
     const [productsRes, categoriesRes] = await Promise.all([
-      axios.get(`${baseUrl}/products`, { params: searchParams }),
-      axios.get(`${baseUrl}/categories`),
+      axiosInstance.get(`${baseUrl}/products`, { params: searchParams }),
+      axiosInstance.get(`${baseUrl}/categories`),
     ]);
 
     const products: ProductResponse = productsRes.data;
