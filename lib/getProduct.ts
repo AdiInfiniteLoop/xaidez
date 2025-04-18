@@ -43,7 +43,7 @@ export async function getProduct(slug: string): Promise<ProductData> {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/products/${slug}`, {
     cache: 'no-store',
     headers: {
-      'Authorization': `${process.env.TOKEN}`,
+      'Authorization': `${process.env.NEXT_PUBLIC_TOKEN}`,
     },
   });
   

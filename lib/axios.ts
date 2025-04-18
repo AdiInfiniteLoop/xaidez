@@ -1,12 +1,18 @@
 import axios from "axios";
 
-const token = `${process.env.TOKEN}`;
-
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
-  headers: {
-    Authorization: `${token}`
-  },
 });
+
+axiosInstance.interceptors.request.use((config) => {
+  const token = process.env.NEXT_PUBLIC_TOKEN
+  if (token) {
+    config.headers.Authorization = `${token}`
+    console.log("🔐 Token set:", config.headers.Authorization)
+  } else {
+    console.warn("⚠️ No token found in env")
+  }
+  return config
+})
 
 export default axiosInstance;

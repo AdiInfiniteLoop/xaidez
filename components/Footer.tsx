@@ -128,7 +128,7 @@ export default function EcommerceFooter() {
                 </div>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-4 pl-3">
                 <ul className="space-y-3">
                   <li className="flex items-start space-x-3">
                     <MapPin size={20} className="text-xaidez-accent flex-shrink-0 mt-1" />
@@ -152,7 +152,7 @@ export default function EcommerceFooter() {
                   </li>
                 </ul>
               </div> 
-              <div className="flex space-x-4">
+              <div className="flex space-x-4 pl-3">
                   <Link
                     href={SITE_INFO.social.facebook}
                     target="_blank"
@@ -199,7 +199,7 @@ export default function EcommerceFooter() {
                     <ShoppingBagIcon className="text-xaidez-accent"/>
                     <h3 className="text-xl font-bold text-xaidez-accent">Quick Links</h3>
                   </div>
-                  <ul className="space-y-3 text-lg">
+                  <ul className="space-y-3 text-lg pl-3">
                     {quicklinks.map(
                       (item) => (
                         <li key={item.label}>
@@ -226,7 +226,7 @@ export default function EcommerceFooter() {
                     <TruckIcon className="text-xaidez-accent"/>
                     <h3 className="text-xl font-bold text-xaidez-accent">Policies</h3>
                   </div>
-                  <ul className="space-y-3 text-lg">
+                  <ul className="space-y-3 text-lg pl-3">
                     {policies.map(
                       (item) => (
                         <li key={item.label}>
