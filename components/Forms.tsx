@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect , useCallback} from 'react';
 import { Send, CheckCircle, XCircle } from 'lucide-react';
 import axiosInstance from '@/lib/axios';
 
@@ -42,15 +42,8 @@ export default function ContactForm({ initialFormData }: FormProps) {
   // Character count for message
   const [messageCharCount, setMessageCharCount] = useState(0);
 
-  // Validate the entire form whenever formData changes
-  useEffect(() => {
-    validateForm();
-    // Update message character count
-    setMessageCharCount(formData.message.length);
-  }, [formData]);
-
   // Validation rules
-  const validateForm = () => {
+  const validateForm = useCallback(() => {
     // Name validation - at least 2 characters, no special characters except space, hyphen, and apostrophe
     const nameValid = formData.name.trim().length >= 2 && /^[a-zA-Z\s\-']+$/.test(formData.name);
     
@@ -79,7 +72,14 @@ export default function ContactForm({ initialFormData }: FormProps) {
     
     // Overall form validity
     setFormIsValid(nameValid && mobileValid && emailValid && messageValid);
-  };
+  },[formData]);
+  // Validate the entire form whenever formData changes
+  useEffect(() => {
+    validateForm();
+    // Update message character count
+    setMessageCharCount(formData.message.length);
+  }, [formData, validateForm]);
+
 
   // Handle input changes with silent validation
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://xaidezkashmir.com
+
+# Sitemaps
+Sitemap: https://xaidezkashmir.com/sitemap.xml

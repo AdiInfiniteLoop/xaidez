@@ -3,7 +3,6 @@ import CategoriesSection from "@/components/Categories";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import WhyChooseUsSection  from "@/components/WhyChooseUs";
 import { MetricsSection } from "@/components/MetricsSection";
-import axios from "axios";
 import MapSection from "@/components/Map";
 import TestimonialsSection from "@/components/Testimonials";
 import axiosInstance from "@/lib/axios";
