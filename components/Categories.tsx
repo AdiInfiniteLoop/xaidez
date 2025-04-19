@@ -3,6 +3,7 @@ import Marquee from 'react-fast-marquee';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { decode } from 'he';
 
 interface Category {
   slug: string;
@@ -34,30 +35,33 @@ const CategoriesSection: React.FC<Props> = ({ items }) => {
 
         <div className="overflow-hidden">
           <Marquee pauseOnHover speed={70} gradient  gradientWidth={60}>
-            {items.map((item) => (
-              <Link
-              href={`/products?category=${item.slug}`}
-              key={item.slug}
-              className="m-4 w-64 h-64 flex-shrink-0 rounded-lg bg-white border border-gray-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col items-center p-5 cursor-pointer group"
-              >
-                <div className="relative  w-40 h-40 rounded-full overflow-hidden mb-4 border-4 border-amber-100 group-hover:border-amber-200 transition-all duration-300">
-                  <Image
-                    src={item.image}
-                    alt={item.title || 'Category Image'}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 768px) 100vw, 200px"
-                    />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-800 text-center group-hover:text-xaidez-accent transition-colors duration-300">
-                  {item.title || 'Category Name'}
-                </h3>
-                <div className="mt-1 flex items-center text-sm text-xaidez-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span>Browse collection</span>
-                  <ArrowRight size={16} className="ml-1" />
-                </div>
-              </Link>
-            ))}
+            {items.map((item) => {
+              const title = decode(item.title)
+              return (
+                <Link
+                href={`/products?category=${item.slug}`}
+                key={item.slug}
+                className="m-4 w-64 h-64 flex-shrink-0 rounded-lg bg-white border border-gray-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col items-center p-5 cursor-pointer group"
+                >
+                  <div className="relative  w-40 h-40 rounded-full overflow-hidden mb-4 border-4 border-amber-100 group-hover:border-amber-200 transition-all duration-300">
+                    <Image
+                      src={item.image}
+                      alt={title || 'Category Image'}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, 200px"
+                      />
+                  </div>
+                  <h3 className="text-lg font-semibold text-gray-800 text-center group-hover:text-xaidez-accent transition-colors duration-300">
+                    {title || 'Category Name'}
+                  </h3>
+                  <div className="mt-1 flex items-center text-sm text-xaidez-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span>Browse collection</span>
+                    <ArrowRight size={16} className="ml-1" />
+                  </div>
+                </Link>
+              )
+            })}
           </Marquee>
         </div>
 

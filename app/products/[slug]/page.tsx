@@ -9,9 +9,7 @@ import ExpandableText from "@/components/Expandabletext"
 import { RatingStars } from "@/components/products/RatingStars"
 
 import { getProduct } from "@/lib/getProduct"
-
-
-
+import { decode } from "he";
 
 function decodeBase64(str: string): string {
   try {
@@ -21,9 +19,6 @@ function decodeBase64(str: string): string {
     return str
   }
 }
-
-
-
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const product = await getProduct(params.slug)
@@ -40,8 +35,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 export default async function ProductPage({ params }: { params: { slug: string } }) {
   const product = await getProduct(params.slug)
 
-  const title = decodeBase64(product.title)
-  const subtitle = decodeBase64(product.subtitle)
+  const title = decode(decodeBase64(product.title))
+  const subtitle = decode(decodeBase64(product.subtitle))
+
   const decodedDescription = decodeBase64(product.description)
 
   const allImages = [product.cover, ...product.images.filter((img) => img !== product.cover)]

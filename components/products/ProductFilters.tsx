@@ -1,5 +1,6 @@
 import { X } from "lucide-react"
 import { Category, CategoryChild } from "@/types/product"
+import { decode } from "he"
 
 interface ProductFiltersProps {
   categories: Category[]
@@ -41,19 +42,22 @@ const ProductFilters = ({
         <div className="space-y-2">
           <h3 className="font-medium text-gray-900">Categories</h3>
           <div className="grid grid-cols-2 gap-2">
-            {categories.map((category) => (
-              <button
-                key={category.slug}
-                onClick={() => handleCategorySelect(category.slug)}
-                className={`text-left px-3 py-2 rounded-lg text-sm transition-all ${
-                  category.slug === selectedCategory
-                    ? "bg-gray-800 text-white font-medium"
-                    : "bg-white border border-gray-200 hover:border-gray-300"
-                }`}
-              >
-                {category.title}
-              </button>
-            ))}
+            {categories.map((category) => {
+              const title = decode(category.title)
+              return (
+                <button
+                  key={category.slug}
+                  onClick={() => handleCategorySelect(category.slug)}
+                  className={`text-left px-3 py-2 rounded-lg text-sm transition-all ${
+                    category.slug === selectedCategory
+                      ? "bg-gray-800 text-white font-medium"
+                      : "bg-white border border-gray-200 hover:border-gray-300"
+                  }`}
+                >
+                  {title}
+                </button>
+              )
+            })}
           </div>
         </div>
 

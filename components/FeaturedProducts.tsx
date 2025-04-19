@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import HotButton from './HotButton1';
+import { decode } from 'he';
 
 interface Product {
   slug: string;
@@ -47,7 +48,10 @@ const FeaturedProducts: React.FC<Props> = ({ products }) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {products.map((product) => (
+          {products.map((product) => {
+             const title = decode(product.title)
+            const subtitle = decode(product.subtitle)
+            return(
             <div
               key={product.slug}
               className="bg-white rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group"
@@ -56,8 +60,8 @@ const FeaturedProducts: React.FC<Props> = ({ products }) => {
             >
               <div className="relative w-full aspect-square overflow-hidden">
                 <Image
-                  src={product.image || "/placeholder.svg"}
-                  alt={product.title}
+                  src={product.image}
+                  alt={title}
                   className={`object-cover w-full h-full transform transition-transform duration-500 ${
                     hoveredProduct === product.slug ? 'scale-110' : 'scale-100'
                   }`}
@@ -73,7 +77,7 @@ const FeaturedProducts: React.FC<Props> = ({ products }) => {
 
                 <div className="hidden lg:flex absolute inset-0 items-end bg-black bg-opacity-0 group-hover:bg-opacity-40 transition duration-300">
                   <p className="text-white text-base p-4 w-full line-clamp-2 group-hover:opacity-100 opacity-0 transition-opacity duration-300">
-                    {product.subtitle}
+                    {subtitle}
                   </p>
                 </div>
               </div>
@@ -93,7 +97,7 @@ const FeaturedProducts: React.FC<Props> = ({ products }) => {
               </div>
 
               <h3 className="text-base font-semibold text-gray-800 truncate">
-                {product.title}
+                {title}
               </h3>
             </div>
 
@@ -107,7 +111,7 @@ const FeaturedProducts: React.FC<Props> = ({ products }) => {
             </div>
 
             </div>
-          ))}
+          )})}
         </div>
 
         <div className="text-center mt-12">
