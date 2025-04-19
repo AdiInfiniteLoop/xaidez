@@ -73,7 +73,7 @@ export const useProductData = ({ initialProducts, categories, searchParams, rout
       setIsLoading(false)
     }
   }, [page, selectedCategory, selectedCollection, searchQuery])
-
+  
   useEffect(() => {
     fetchProducts()
   }, [fetchProducts])

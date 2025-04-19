@@ -1,5 +1,6 @@
 export const revalidate = 2
 import { routeMetadata } from '@/lib/metadata';
+import { decode } from 'he';
 import { Metadata } from 'next';
 import Image from 'next/image';
 
@@ -81,29 +82,34 @@ export default async function ImageGalleryPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {gallery.map((item, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group"
-            >
-              <div className="relative w-full aspect-[16/9] overflow-hidden">
-                <Image
-                  src={item.cover}
-                  alt={item.decodedTitle}
-                  className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  priority
-                />
+          {gallery.map((item, index) => {
+            const decoded = decode(decodeBase64(item.title));
+
+            return (
+              <div
+                key={index}
+                className="bg-white rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden group"
+              >
+                <div className="relative w-full aspect-[16/9] overflow-hidden">
+                  <Image
+                    src={item.cover}
+                    alt={decoded}
+                    className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    priority
+                  />
+                </div>
+                <div className="p-4">
+                  <h3 className="text-base font-semibold text-gray-800 line-clamp-2 h-10 lg:h-6">
+                    {decoded}
+                  </h3>
+                </div>
               </div>
-              <div className="p-4">
-                <h3 className="text-base font-semibold text-gray-800 line-clamp-2 h-10 lg:h-6">
-                  {item.decodedTitle}
-                </h3>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
+
 
       </div>
     </section>

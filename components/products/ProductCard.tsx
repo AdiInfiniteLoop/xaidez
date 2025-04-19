@@ -3,12 +3,17 @@ import { Product } from "@/types/product"
 import { RatingStars } from "./RatingStars"
 import Link from "next/link"
 import { ChevronRight } from "lucide-react"
+import { decode } from "he" // Import decode from 'he'
 
 interface ProductCardProps {
   product: Product
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  // Decode the title and subtitle before rendering
+  const decodedTitle = decode(product.title)
+  const decodedSubtitle = decode(product.subtitle)
+
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow group">
       <Link href={`products/${product.slug}`}>
@@ -16,15 +21,15 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <div className="relative aspect-square overflow-hidden">
             <Image
               src={product.image}
-              alt={product.title}
+              alt={decodedTitle} // Use decoded title in alt as well
               fill
               className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
             />
           </div>
 
           <div className="p-4">
-            <h4 className="text-lg font-medium text-gray-900 line-clamp-1">{product.title}</h4>
-            <p className="text-sm text-gray-500 mt-1 line-clamp-2">{product.subtitle}</p>
+            <h4 className="text-lg font-medium text-gray-900 line-clamp-1">{decodedTitle}</h4>
+            <p className="text-sm text-gray-500 mt-1 line-clamp-2">{decodedSubtitle}</p> 
             <div className="mt-3">
               <RatingStars rating={product.rating} />
             </div>

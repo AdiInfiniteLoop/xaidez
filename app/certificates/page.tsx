@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Metadata } from 'next';
 import { routeMetadata } from '@/lib/metadata';
 import Link from 'next/link';
+import { decode } from 'he';
 
 export const metadata: Metadata = routeMetadata["/certificates"]
 interface Certificate {
@@ -94,8 +95,7 @@ export default async function CertificatesPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {certificates.map((certificate, index) => {
-            const decoded = decodeTitle(certificate.title);
-
+            const decoded = decode(decodeTitle(certificate.title));
             return (
                 <div
                 key={`${certificate.title}-${index}`}
