@@ -8,7 +8,7 @@ const nextConfig = {
         },
         {
           protocol:'https',
-          hostname: 'api.snowbankkashmir.com'
+          hostname: 'api.xaidezkashmir.com'
         }
       ],
     },

@@ -1,4 +1,4 @@
-import axiosInstance from '@/lib/axios';
+export const revalidate = 2
 import { routeMetadata } from '@/lib/metadata';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -27,14 +27,24 @@ export default async function ImageGalleryPage() {
   let gallery: GalleryItem[] = [];
 
   try {
-    const response = await axiosInstance.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/photos`);
-  
-    const result = response.data;
-  
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/photos`, {
+      headers: {
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    
+    if (!response.ok) {
+      console.error(`HTTP error! Status: ${response.status}`);
+      throw new Error('Failed to fetch gallery');
+    }
+    
+    const result = await response.json();
+    
     if (result.status !== 'success' || !Array.isArray(result.data)) {
       throw new Error('Invalid data');
     }
-  
+    
     gallery = result.data.map((item: RawGalleryItem) => ({
       ...item,
       decodedTitle: decodeBase64(item.title),

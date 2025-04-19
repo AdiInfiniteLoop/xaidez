@@ -1,8 +1,8 @@
+export const revalidate = 1
 import { Metadata } from 'next';
 import {decode} from 'he'
 import { routeMetadata } from '@/lib/metadata';
 import Link from 'next/link';
-import axiosInstance from '@/lib/axios';
 
 
 export const metadata: Metadata = routeMetadata["/videos"]
@@ -35,19 +35,28 @@ export default async function VideosPage() {
   let error: string | null = null;
   
   try {
-    const response = await axiosInstance.get<VideosResponse>(`${apiUrl}/videos`);
-    const result = response.data;
-  
+    const response = await fetch(`${apiUrl}/videos`, {
+      headers: {
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    
+    const result = await response.json();
+    
     if (result.status !== 'success' || !Array.isArray(result.data)) {
       throw new Error(result.message || 'Invalid response format');
     }
-  
+    
     videos = result.data;
   } catch (err) {
     console.error('Error fetching videos:', err);
     error = err instanceof Error ? err.message : 'Unknown error occurred';
   }
-
   if (error) {
     return (
       <div className="w-full max-w-7xl mx-auto px-4 py-12 text-center">

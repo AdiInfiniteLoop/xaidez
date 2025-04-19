@@ -1,8 +1,8 @@
+export const revalidate = 2
 import Image from 'next/image';
 import { Metadata } from 'next';
 import { routeMetadata } from '@/lib/metadata';
 import Link from 'next/link';
-import axiosInstance from '@/lib/axios';
 
 export const metadata: Metadata = routeMetadata["/certificates"]
 interface Certificate {
@@ -28,12 +28,23 @@ const decodeTitle = (title: string) => {
 async function getCertificates(): Promise<Certificate[] | null> {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
-    const response = await axiosInstance.get(`${apiUrl}/certificates`);
-
-    const data: CertificatesResponse = response.data;
-
-    if (data.status !== 'success') throw new Error(data.message);
-
+    const response = await fetch(`${apiUrl}/certificates`, {
+      headers: {
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`, 
+        'Content-Type': 'application/json'
+      }
+    });
+    
+    if (!response.ok) {
+      console.log(`HTTP error! Status: ${response.status}`); return null;
+    }
+    
+    const data: CertificatesResponse = await response.json();
+    
+    if (data.status !== 'success') {
+      return null;
+    }
+    
     return data.data;
   } catch (err) {
     console.error('Error fetching certificates:', err);
