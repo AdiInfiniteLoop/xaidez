@@ -12,12 +12,6 @@ interface VideoData {
   source: string;
 }
 
-interface VideosResponse {
-  status: string;
-  message: string;
-  data: VideoData[];
-}
-
 const decodeBase64 = (base64String: string): string => {
   try {
     return Buffer.from(base64String, 'base64').toString('utf-8');
